@@ -1,0 +1,723 @@
+/* ============================================================
+   CỬA HÀNG — Giao diện hiện đại sống động
+   ============================================================ */
+
+.shop-root {
+    -fx-background-color: linear-gradient(to bottom right, #fdf2f8, #ede9fe, #dbeafe);
+}
+
+/* --- Tiêu đề --- */
+.shop-header {
+    -fx-background-color: rgba(255, 255, 255, 0.92);
+    -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.12), 14, 0.3, 0, 3);
+}
+
+.shop-logo {
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #7c3aed;
+}
+
+.shop-tagline {
+    -fx-font-size: 11px;
+    -fx-text-fill: #a78bfa;
+    -fx-font-weight: 600;
+}
+
+.shop-info-bar {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6366f1;
+    -fx-font-weight: 600;
+    -fx-background-color: #eef2ff;
+    -fx-background-radius: 20;
+    -fx-padding: 6 14;
+}
+
+.shop-admin-btn {
+    -fx-background-color: #f1f5f9;
+    -fx-text-fill: #475569;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-background-radius: 10;
+    -fx-padding: 8 14;
+    -fx-cursor: hand;
+}
+
+.shop-admin-btn:hover {
+    -fx-background-color: #e2e8f0;
+}
+
+/* --- Huy hiệu & Tiến trình Hội viên --- */
+.member-badge {
+    -fx-font-size: 13px;
+    -fx-font-weight: 800;
+    -fx-padding: 6 14;
+    -fx-background-color: white;
+    -fx-background-radius: 999;
+    -fx-border-radius: 999;
+    -fx-border-width: 2;
+    -fx-border-color: #cd7f32;
+    -fx-text-fill: #cd7f32;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 4, 0.1, 0, 1);
+}
+
+.member-progress-bar {
+    -fx-background-color: linear-gradient(to right, #fef3c7, #fde68a, #fbbf24);
+    -fx-alignment: center;
+}
+
+.member-progress-text {
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #78350f;
+}
+
+/* --- Nút Ảnh đại diện & Menu thả xuống --- */
+.avatar-dropdown-wrap {
+    -fx-alignment: top-center;
+    -fx-min-width: 44;
+    -fx-pref-width: 44;
+}
+
+.shop-avatar-btn {
+    -fx-background-color: linear-gradient(to bottom right, #94a3b8, #64748b);
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: 800;
+    -fx-background-radius: 999;
+    -fx-min-width: 44;
+    -fx-min-height: 44;
+    -fx-pref-width: 44;
+    -fx-pref-height: 44;
+    -fx-max-width: 44;
+    -fx-max-height: 44;
+    -fx-padding: 0;
+    -fx-alignment: center;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 6, 0.15, 0, 2);
+}
+
+.shop-avatar-btn:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.25), 10, 0.2, 0, 3);
+    -fx-scale-x: 1.08;
+    -fx-scale-y: 1.08;
+}
+
+.shop-avatar-btn.avatar-guest {
+    -fx-background-color: linear-gradient(to bottom right, #94a3b8, #64748b);
+}
+
+.shop-avatar-btn.avatar-logged-in {
+    -fx-background-color: linear-gradient(to bottom right, #7c3aed, #6366f1);
+}
+
+.avatar-dropdown {
+    -fx-background-color: white;
+    -fx-background-radius: 12;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.15), 12, 0.15, 0, 4);
+    -fx-pref-width: 200;
+    -fx-min-width: 200;
+    -fx-max-width: 200;
+    -fx-spacing: 2;
+}
+
+.avatar-dropdown-name {
+    -fx-font-size: 13px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1e1b4b;
+}
+
+.avatar-dropdown-tier {
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #7c3aed;
+}
+
+.avatar-dropdown-spent {
+    -fx-font-size: 11px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #64748b;
+    -fx-padding: 0;
+}
+
+.avatar-dropdown-btn {
+    -fx-background-color: #f1f5f9;
+    -fx-text-fill: #334155;
+    -fx-font-size: 11px;
+    -fx-font-weight: 700;
+    -fx-background-radius: 8;
+    -fx-padding: 5 12;
+    -fx-cursor: hand;
+    -fx-max-width: 999999;
+}
+
+.avatar-dropdown-btn:hover {
+    -fx-background-color: #e2e8f0;
+}
+
+.avatar-logout-btn {
+    -fx-background-color: #fef2f2;
+    -fx-text-fill: #dc2626;
+}
+
+.avatar-logout-btn:hover {
+    -fx-background-color: #fee2e2;
+}
+
+/* --- Nút Giỏ hàng & Huy hiệu --- */
+.shop-cart-btn {
+    -fx-background-color: linear-gradient(to bottom right, #7c3aed, #6366f1);
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-background-radius: 999;
+    -fx-min-width: 48;
+    -fx-min-height: 48;
+    -fx-pref-width: 48;
+    -fx-pref-height: 48;
+    -fx-max-width: 48;
+    -fx-max-height: 48;
+    -fx-padding: 0;
+    -fx-alignment: center;
+    -fx-content-display: center;
+    -fx-cursor: hand;
+}
+
+.shop-cart-btn:hover {
+    -fx-background-color: linear-gradient(to bottom right, #6d28d9, #4f46e5);
+}
+
+.cart-icon-wrap {
+    -fx-alignment: center;
+    -fx-min-width: 52;
+    -fx-min-height: 52;
+}
+
+.cart-badge {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+    -fx-font-size: 11px;
+    -fx-font-weight: 800;
+    -fx-background-radius: 999;
+    -fx-padding: 2 7;
+    -fx-translate-x: 14;
+    -fx-translate-y: -8;
+}
+
+/* --- Banner chính --- */
+.shop-hero {
+    -fx-background-color: linear-gradient(to right, #c084fc, #818cf8, #38bdf8);
+    -fx-background-radius: 0;
+}
+
+.hero-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+    -fx-text-fill: white;
+}
+
+.hero-subtitle {
+    -fx-font-size: 13px;
+    -fx-text-fill: rgba(255, 255, 255, 0.9);
+    -fx-font-weight: 600;
+}
+
+/* --- Điều hướng danh mục --- */
+.category-nav {
+    -fx-background-color: rgba(255, 255, 255, 0.92);
+    -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.08), 6, 0.2, 0, 2);
+}
+
+.category-nav-btn {
+    -fx-background-color: linear-gradient(to bottom, #f8fafc, #f1f5f9);
+    -fx-text-fill: #475569;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 1.5;
+    -fx-padding: 8 18;
+    -fx-cursor: hand;
+}
+
+.category-nav-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #ede9fe, #ddd6fe);
+    -fx-border-color: #a78bfa;
+    -fx-text-fill: #6d28d9;
+    -fx-effect: dropshadow(gaussian, rgba(124, 58, 237, 0.15), 6, 0.2, 0, 2);
+}
+
+.category-nav-btn:pressed {
+    -fx-background-color: linear-gradient(to bottom, #ddd6fe, #c4b5fd);
+    -fx-border-color: #7c3aed;
+    -fx-text-fill: #5b21b6;
+}
+
+/* --- Bộ lọc giá --- */
+.price-filter-bar {
+    -fx-background-color: rgba(255, 255, 255, 0.88);
+    -fx-background-radius: 16;
+    -fx-padding: 12 18;
+    -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.06), 6, 0.15, 0, 1);
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+}
+
+.price-filter-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #475569;
+}
+
+.price-filter-value {
+    -fx-font-size: 14px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #7c3aed;
+}
+
+.price-slider .track {
+    -fx-background-color: linear-gradient(to right, #e2e8f0, #c4b5fd);
+    -fx-background-radius: 6;
+    -fx-pref-height: 6;
+}
+
+.price-slider .thumb {
+    -fx-background-color: linear-gradient(to bottom, #a78bfa, #7c3aed);
+    -fx-background-radius: 50;
+    -fx-pref-width: 20;
+    -fx-pref-height: 20;
+    -fx-effect: dropshadow(gaussian, rgba(124, 58, 237, 0.35), 6, 0.3, 0, 2);
+    -fx-cursor: hand;
+}
+
+.price-slider .thumb:hover {
+    -fx-background-color: linear-gradient(to bottom, #8b5cf6, #6d28d9);
+    -fx-effect: dropshadow(gaussian, rgba(124, 58, 237, 0.5), 8, 0.4, 0, 2);
+}
+
+.price-slider .axis {
+    -fx-tick-label-fill: #94a3b8;
+    -fx-font-size: 10px;
+}
+
+.price-slider .tick-mark {
+    -fx-stroke: #cbd5e1;
+}
+
+.price-toggle-btn {
+    -fx-background-color: linear-gradient(to bottom, #f8fafc, #f1f5f9);
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-border-width: 1.5;
+    -fx-font-size: 15px;
+    -fx-padding: 4 10;
+    -fx-cursor: hand;
+}
+
+.price-toggle-btn:hover {
+    -fx-background-color: linear-gradient(to bottom, #ede9fe, #ddd6fe);
+    -fx-border-color: #a78bfa;
+}
+
+.price-reset-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #7c3aed;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-cursor: hand;
+    -fx-padding: 2 8;
+    -fx-border-color: #c4b5fd;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+    -fx-border-width: 1;
+}
+
+.price-reset-btn:hover {
+    -fx-background-color: #ede9fe;
+    -fx-text-fill: #6d28d9;
+}
+
+/* --- Tìm kiếm --- */
+.shop-search-bar {
+    -fx-background-color: rgba(255, 255, 255, 0.85);
+    -fx-background-radius: 16;
+    -fx-padding: 10 14;
+    -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.08), 8, 0.2, 0, 2);
+}
+
+.shop-search-field {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+    -fx-font-size: 14px;
+    -fx-prompt-text-fill: #94a3b8;
+}
+
+.shop-search-field:focused {
+    -fx-border-color: transparent;
+}
+
+.shop-search-clear {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: #ef4444;
+    -fx-font-size: 13px;
+    -fx-font-weight: 800;
+    -fx-background-radius: 999;
+    -fx-padding: 6 12;
+    -fx-cursor: hand;
+}
+
+.shop-search-clear:hover {
+    -fx-background-color: #fecaca;
+}
+
+.shop-suggestions {
+    -fx-padding: 0;
+}
+
+.shop-suggestion-btn {
+    -fx-font-size: 11px;
+    -fx-padding: 6 12;
+    -fx-background-color: #f0f9ff;
+    -fx-text-fill: #0284c7;
+    -fx-background-radius: 20;
+    -fx-font-weight: 600;
+    -fx-cursor: hand;
+}
+
+.shop-suggestion-btn:hover {
+    -fx-background-color: #e0f2fe;
+}
+
+.shop-intelligence-bar {
+    -fx-background-color: linear-gradient(to right, #ede9fe, #e0f2fe);
+    -fx-background-radius: 14;
+    -fx-padding: 10 14;
+    -fx-border-color: #ddd6fe;
+    -fx-border-radius: 14;
+    -fx-border-width: 1;
+}
+
+.shop-intelligence-title {
+    -fx-font-size: 12px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #6d28d9;
+}
+
+.shop-intelligence-text {
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #334155;
+}
+
+/* --- Khu vực --- */
+.shop-section {
+    -fx-background-color: rgba(255, 255, 255, 0.6);
+    -fx-background-radius: 18;
+    -fx-padding: 16;
+}
+
+.section-heading {
+    -fx-font-size: 20px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1e1b4b;
+}
+
+.badge-hot {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+    -fx-background-radius: 20;
+    -fx-padding: 3 10;
+}
+
+.badge-new-section {
+    -fx-background-color: #8b5cf6;
+    -fx-text-fill: white;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+    -fx-background-radius: 20;
+    -fx-padding: 3 10;
+}
+
+.shop-more-btn {
+    -fx-background-color: transparent;
+    -fx-text-fill: #7c3aed;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-padding: 6 10;
+    -fx-cursor: hand;
+}
+
+.shop-more-btn:hover {
+    -fx-text-fill: #6d28d9;
+    -fx-underline: true;
+}
+
+/* --- Thẻ hoa --- */
+.flower-card {
+    -fx-background-color: white;
+    -fx-background-radius: 18;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.08), 14, 0.15, 0, 4);
+    -fx-min-width: 220;
+    -fx-max-width: 280;
+}
+
+.flower-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.16), 22, 0.25, 0, 8);
+    -fx-scale-x: 1.03;
+    -fx-scale-y: 1.03;
+}
+
+.flower-thumb {
+    -fx-pref-height: 200;
+    -fx-min-height: 200;
+    -fx-background-radius: 18 18 0 0;
+    -fx-alignment: center;
+}
+
+.tet-gradient {
+    -fx-background-color: linear-gradient(to bottom right, #fecdd3, #fda4af, #fb7185);
+}
+
+.funeral-gradient {
+    -fx-background-color: linear-gradient(to bottom right, #e2e8f0, #cbd5e1, #94a3b8);
+}
+
+.celebrate-gradient {
+    -fx-background-color: linear-gradient(to bottom right, #bbf7d0, #86efac, #4ade80);
+}
+
+.birthday-gradient {
+    -fx-background-color: linear-gradient(to bottom right, #fde68a, #fbbf24, #f59e0b);
+}
+
+.wedding-gradient {
+    -fx-background-color: linear-gradient(to bottom right, #fbcfe8, #f9a8d4, #f472b6);
+}
+
+.flower-emoji {
+    -fx-font-size: 64px;
+}
+
+/* Hình ảnh hoa thay thế emoji */
+.flower-image-view {
+    -fx-effect: null;
+}
+
+.badge-new {
+    -fx-background-color: #8b5cf6;
+    -fx-text-fill: white;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+    -fx-background-radius: 0 18 0 10;
+    -fx-padding: 4 10;
+}
+
+.badge-hot-thumb {
+    -fx-background-color: #ef4444;
+    -fx-text-fill: white;
+    -fx-font-size: 10px;
+    -fx-font-weight: 800;
+    -fx-background-radius: 0 18 0 10;
+    -fx-padding: 4 10;
+}
+
+.flower-card-body {
+    -fx-padding: 14 16 16 16;
+}
+
+.flower-name {
+    -fx-font-size: 16px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #1e1b4b;
+}
+
+.flower-desc {
+    -fx-font-size: 12px;
+    -fx-text-fill: #64748b;
+    -fx-wrap-text: true;
+}
+
+.flower-price {
+    -fx-font-size: 16px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #e11d48;
+}
+
+.card-bottom-row {
+    -fx-padding: 6 0 0 0;
+}
+
+.card-add-btn {
+    -fx-background-color: linear-gradient(to right, #ec4899, #f472b6);
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-padding: 8 18;
+    -fx-background-radius: 999;
+    -fx-cursor: hand;
+    -fx-effect: dropshadow(gaussian, rgba(236, 72, 153, 0.3), 6, 0.2, 0, 2);
+}
+
+.card-add-btn:hover {
+    -fx-background-color: linear-gradient(to right, #db2777, #ec4899);
+    -fx-effect: dropshadow(gaussian, rgba(236, 72, 153, 0.5), 10, 0.3, 0, 3);
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
+}
+
+.card-add-btn:pressed {
+    -fx-background-color: linear-gradient(to right, #be185d, #db2777);
+    -fx-scale-x: 0.95;
+    -fx-scale-y: 0.95;
+}
+
+.card-add-btn:disabled {
+    -fx-background-color: #cbd5e1;
+    -fx-text-fill: #94a3b8;
+    -fx-effect: none;
+    -fx-opacity: 0.8;
+    -fx-cursor: default;
+}
+
+/* --- Lớp phủ hết hàng --- */
+.sold-out-label {
+    -fx-background-color: rgba(0, 0, 0, 0.55);
+    -fx-background-radius: 8;
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: 900;
+    -fx-padding: 6 18;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 6, 0.2, 0, 2);
+}
+
+/* --- Bảng xem thêm --- */
+.shop-viewmore-panel {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-padding: 16;
+    -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.10), 12, 0.2, 0, 3);
+}
+
+.shop-viewmore-content {
+    -fx-font-size: 13px;
+    -fx-text-fill: #334155;
+}
+
+/* --- Chân trang (trong cuộn) --- */
+.shop-footer-section {
+    -fx-background-color: #fafaf9;
+    -fx-border-color: #e7e5e4 transparent transparent transparent;
+    -fx-border-width: 1 0 0 0;
+}
+
+.footer-main {
+    -fx-background-color: transparent;
+}
+
+.footer-logo {
+    -fx-font-size: 26px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #92702a;
+    -fx-font-style: italic;
+}
+
+.footer-desc {
+    -fx-font-size: 12.5px;
+    -fx-text-fill: #57534e;
+    -fx-line-spacing: 2;
+}
+
+.footer-heading {
+    -fx-font-size: 14px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1c1917;
+    -fx-padding: 8 0 0 0;
+}
+
+.footer-col-title {
+    -fx-font-size: 13px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1c1917;
+    -fx-padding: 0 0 4 0;
+}
+
+.footer-link {
+    -fx-font-size: 12.5px;
+    -fx-text-fill: #57534e;
+    -fx-cursor: hand;
+}
+
+.footer-link:hover {
+    -fx-text-fill: #92702a;
+    -fx-underline: true;
+}
+
+.footer-bottom {
+    -fx-background-color: transparent;
+}
+
+.footer-copyright {
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #78716c;
+    -fx-letter-spacing: 1;
+}
+
+/* --- Tại sao chọn chúng tôi --- */
+.why-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 16;
+    -fx-border-width: 1;
+    -fx-padding: 20 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0, 0, 2);
+}
+
+.why-card:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.12), 16, 0, 0, 4);
+    -fx-border-color: #c7d2fe;
+}
+
+.why-icon {
+    -fx-font-size: 36px;
+}
+
+.why-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1e293b;
+}
+
+.why-desc {
+    -fx-font-size: 12px;
+    -fx-text-fill: #64748b;
+    -fx-text-alignment: center;
+}
+
+/* --- Popup chi tiết hoa --- */
+.flower-detail-dialog {
+    -fx-background-color: white;
+    -fx-background-radius: 18;
+}
+
+.flower-detail-dialog > .content {
+    -fx-padding: 0;
+}
+
+.detail-flower-name {
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1e293b;
+}
+
+.detail-info {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #475569;
+    -fx-padding: 2 0;
+}

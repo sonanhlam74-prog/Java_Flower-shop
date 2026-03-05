@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox styleClass="shop-root"
+    xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.example.HistoryController">
+
+    <!-- Tiêu đề -->
+    <HBox alignment="CENTER_LEFT" spacing="14.0" styleClass="shop-header">
+        <children>
+            <Label text="📋 Lịch sử mua hàng" styleClass="shop-logo" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Label fx:id="lblSummary" text="" styleClass="shop-info-bar" />
+            <Region HBox.hgrow="ALWAYS" />
+            <Button onAction="#handleBackToShop" styleClass="shop-admin-btn" text="← Quay lại Shop" />
+        </children>
+        <padding>
+            <Insets bottom="12.0" left="24.0" right="24.0" top="12.0" />
+        </padding>
+    </HBox>
+
+    <!-- Hàng thống kê -->
+    <HBox alignment="CENTER" spacing="24.0" styleClass="history-stats-row">
+        <children>
+            <VBox alignment="CENTER" styleClass="history-stat-card">
+                <children>
+                    <Label fx:id="lblTotalOrders" text="0" styleClass="history-stat-number" />
+                    <Label text="Đơn hàng" styleClass="history-stat-label" />
+                </children>
+            </VBox>
+            <VBox alignment="CENTER" styleClass="history-stat-card">
+                <children>
+                    <Label fx:id="lblTotalRevenue" text="0₫" styleClass="history-stat-number" />
+                    <Label text="Tổng chi tiêu" styleClass="history-stat-label" />
+                </children>
+            </VBox>
+            <VBox alignment="CENTER" styleClass="history-stat-card">
+                <children>
+                    <Label fx:id="lblCurrentTier" text="🥉 Đồng" styleClass="history-stat-number" />
+                    <Label text="Hạng hiện tại" styleClass="history-stat-label" />
+                </children>
+            </VBox>
+        </children>
+        <padding>
+            <Insets bottom="12.0" left="24.0" right="24.0" top="12.0" />
+        </padding>
+    </HBox>
+
+    <!-- Danh sách đơn hàng -->
+    <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="shop-scroll" VBox.vgrow="ALWAYS">
+        <content>
+            <VBox fx:id="orderListBox" spacing="14.0">
+                <padding>
+                    <Insets bottom="24.0" left="24.0" right="24.0" top="16.0" />
+                </padding>
+            </VBox>
+        </content>
+    </ScrollPane>
+
+</VBox>

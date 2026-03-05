@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.chart.AreaChart?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.NumberAxis?>
+
+<BorderPane prefHeight="760.0" prefWidth="1200.0" styleClass="crud-root"
+            xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="com.example.CrudController">
+    <left>
+        <VBox prefWidth="230.0" styleClass="sidebar">
+            <children>
+                <Label text="FLOWER CRM" styleClass="sidebar-title" />
+                <Label text="Quản lý cửa hàng hoa" styleClass="sidebar-subtitle" />
+                <Separator styleClass="side-separator" />
+
+                <Button fx:id="btnMenuDashboard" text="🏠 Dashboard" onAction="#handleMenuDashboard" styleClass="menu-item,menu-item-active">
+                    <VBox.margin>
+                        <Insets top="10.0" />
+                    </VBox.margin>
+                </Button>
+                <Button fx:id="btnMenuProducts" text="📦 Sản phẩm" onAction="#handleMenuProducts" styleClass="menu-item" />
+                <Button fx:id="btnMenuStats" text="📈 Thống kê" onAction="#handleMenuStats" styleClass="menu-item" />
+                <Button fx:id="btnMenuOrders" text="🧾 Đơn hàng" onAction="#handleMenuOrders" styleClass="menu-item" />
+                <Button text="🚪 Đăng xuất" onAction="#handleLogout" styleClass="menu-item" />
+
+                <Region VBox.vgrow="ALWAYS" />
+                <Label text="Phiên bản 2.0" styleClass="version-text" />
+            </children>
+            <padding>
+                <Insets bottom="24.0" left="20.0" right="20.0" top="30.0" />
+            </padding>
+        </VBox>
+    </left>
+
+    <center>
+        <StackPane>
+            <!-- ==================== BẢNG: TỔNG QUAN ==================== -->
+            <VBox fx:id="panelDashboard" spacing="18.0" styleClass="content-wrap">
+                <padding><Insets bottom="22.0" left="24.0" right="24.0" top="20.0" /></padding>
+                <children>
+                    <!-- Hàng trên -->
+                    <HBox alignment="CENTER_LEFT" styleClass="top-row">
+                        <children>
+                            <VBox spacing="4.0">
+                                <Label text="🌟 Dashboard" styleClass="page-title" />
+                                <Label text="Tổng quan hệ thống cửa hàng hoa" styleClass="page-subtitle" />
+                            </VBox>
+                            <Region HBox.hgrow="ALWAYS" />
+                            <HBox alignment="CENTER" spacing="10.0" styleClass="profile-box">
+                                <VBox alignment="CENTER_RIGHT" spacing="2.0">
+                                    <Label fx:id="lblProfileName" text="Admin" styleClass="profile-name" />
+                                    <Label text="Manager" styleClass="profile-role" />
+                                </VBox>
+                                <HBox alignment="CENTER" prefHeight="42.0" prefWidth="42.0" styleClass="avatar-wrap">
+                                    <Circle radius="18.0" styleClass="avatar-circle" />
+                                    <Text styleClass="avatar-text" text="NA" />
+                                </HBox>
+                            </HBox>
+                        </children>
+                    </HBox>
+
+                    <!-- Thẻ thống kê tổng quan (6 thẻ - 2 hàng) -->
+                    <HBox spacing="14.0">
+                        <VBox styleClass="stat-card,stat-1" HBox.hgrow="ALWAYS" maxWidth="1.7976931348623157E308">
+                            <Label text="🌻 Tổng sản phẩm" styleClass="stat-title" />
+                            <Label fx:id="statTotal" text="0" styleClass="stat-value" />
+                        </VBox>
+                        <VBox styleClass="stat-card,stat-2" HBox.hgrow="ALWAYS" maxWidth="1.7976931348623157E308">
+                            <Label text="📦 Tổng tồn kho" styleClass="stat-title" />
+                            <Label fx:id="statInStock" text="0" styleClass="stat-value" />
+                        </VBox>
+                        <VBox styleClass="stat-card,stat-3" HBox.hgrow="ALWAYS" maxWidth="1.7976931348623157E308">
+                            <Label text="⚠️ Sắp hết hàng" styleClass="stat-title" />
+                            <Label fx:id="statLowStock" text="0" styleClass="stat-value" />
+                        </VBox>
+                    </HBox>
+                    <HBox spacing="14.0">
+                        <VBox styleClass="stat-card,stat-4" HBox.hgrow="ALWAYS" maxWidth="1.7976931348623157E308">
+                            <Label text="🧾 Tổng đơn hàng" styleClass="stat-title" />
+                            <Label fx:id="statOrderCount" text="0" styleClass="stat-value" />
+                        </VBox>
+                        <VBox styleClass="stat-card,stat-5" HBox.hgrow="ALWAYS" maxWidth="1.7976931348623157E308">
+                            <Label text="💰 Tổng doanh thu" styleClass="stat-title" />
+                            <Label fx:id="statRevenue" text="0₫" styleClass="stat-value" />
+                        </VBox>
+                        <VBox styleClass="stat-card,stat-6" HBox.hgrow="ALWAYS" maxWidth="1.7976931348623157E308">
+                            <Label text="👥 Khách hàng" styleClass="stat-title" />
+                            <Label fx:id="statCustomers" text="0" styleClass="stat-value" />
+                        </VBox>
+                    </HBox>
+
+                    <!-- Đơn hàng gần đây -->
+                    <VBox spacing="8.0" styleClass="form-card" VBox.vgrow="ALWAYS">
+                        <Label text="🕑 Đơn hàng gần đây" styleClass="section-title" />
+                        <TableView fx:id="recentOrdersTable" VBox.vgrow="ALWAYS" styleClass="modern-table" prefHeight="200.0">
+                            <columns>
+                                <TableColumn fx:id="colRecentId" prefWidth="70" text="Mã ĐH" />
+                                <TableColumn fx:id="colRecentDate" prefWidth="160" text="Thời gian" />
+                                <TableColumn fx:id="colRecentCustomer" prefWidth="200" text="Khách hàng" />
+                                <TableColumn fx:id="colRecentItems" prefWidth="100" text="Số SP" />
+                                <TableColumn fx:id="colRecentTotal" prefWidth="160" text="Tổng tiền" />
+                                <TableColumn fx:id="colRecentTier" prefWidth="120" text="Hạng" />
+                                <TableColumn fx:id="colRecentStatus" prefWidth="120" text="Trạng thái" />
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </children>
+            </VBox>
+
+            <!-- ==================== BẢNG: SẢN PHẨM (CRUD) ==================== -->
+            <VBox fx:id="panelProducts" spacing="18.0" styleClass="content-wrap" visible="false">
+                <padding><Insets bottom="22.0" left="24.0" right="24.0" top="20.0" /></padding>
+                <children>
+                    <HBox alignment="CENTER_LEFT" styleClass="top-row">
+                        <VBox spacing="4.0">
+                            <Label text="📦 Quản lý sản phẩm" styleClass="page-title" />
+                            <Label text="Thêm, sửa, xoá và theo dõi tồn kho theo thời gian thực" styleClass="page-subtitle" />
+                        </VBox>
+                    </HBox>
+
+                    <HBox spacing="16.0" VBox.vgrow="ALWAYS">
+                        <!-- Thẻ biểu mẫu -->
+                        <VBox spacing="12.0" styleClass="form-card" prefWidth="330.0">
+                            <Label text="Thông tin sản phẩm" styleClass="section-title" />
+                            <Label text="Tên hoa" styleClass="field-label" />
+                            <TextField fx:id="txtName" promptText="Nhập tên hoa" styleClass="input-field" />
+                            <Label text="Loại" styleClass="field-label" />
+                            <ComboBox fx:id="cbCategory" promptText="Chọn loại hoa" styleClass="input-field" />
+                            <Label text="Giá (VND)" styleClass="field-label" />
+                            <TextField fx:id="txtPrice" promptText="Ví dụ: 120000" styleClass="input-field" />
+                            <Label text="Tồn kho" styleClass="field-label" />
+                            <TextField fx:id="txtStock" promptText="Ví dụ: 20" styleClass="input-field" />
+                            <HBox spacing="8.0">
+                                <Button text="Thêm" onAction="#handleAdd" styleClass="action-btn,primary-btn" HBox.hgrow="ALWAYS" maxWidth="999999" />
+                                <Button text="Sửa" onAction="#handleUpdate" styleClass="action-btn,warn-btn" HBox.hgrow="ALWAYS" maxWidth="999999" />
+                            </HBox>
+                            <HBox spacing="8.0">
+                                <Button text="Xoá" onAction="#handleDelete" styleClass="action-btn,danger-btn" HBox.hgrow="ALWAYS" maxWidth="999999" />
+                                <Button text="Làm mới" onAction="#handleClear" styleClass="action-btn,ghost-btn" HBox.hgrow="ALWAYS" maxWidth="999999" />
+                            </HBox>
+                        </VBox>
+
+                        <!-- Thẻ bảng -->
+                        <VBox spacing="12.0" styleClass="table-card" HBox.hgrow="ALWAYS">
+                            <Label text="Danh sách sản phẩm" styleClass="section-title" />
+                            <TableView fx:id="flowerTable" VBox.vgrow="ALWAYS" styleClass="modern-table">
+                                <columns>
+                                    <TableColumn fx:id="colId" prefWidth="90.0" text="ID" />
+                                    <TableColumn fx:id="colName" prefWidth="200.0" text="Tên" />
+                                    <TableColumn fx:id="colCategory" prefWidth="150.0" text="Loại" />
+                                    <TableColumn fx:id="colPrice" prefWidth="130.0" text="Giá" />
+                                    <TableColumn fx:id="colStock" prefWidth="100.0" text="Tồn kho" />
+                                    <TableColumn fx:id="colStatus" prefWidth="120.0" text="Trạng thái" />
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </HBox>
+                </children>
+            </VBox>
+
+            <!-- ==================== BẢNG: THỐNG KÊ ==================== -->
+            <ScrollPane fx:id="panelStats" fitToWidth="true" styleClass="stat-scroll" visible="false">
+                <VBox spacing="18.0" styleClass="content-wrap">
+                    <padding><Insets bottom="22.0" left="24.0" right="24.0" top="20.0" /></padding>
+                    <children>
+                        <HBox alignment="CENTER_LEFT" styleClass="top-row">
+                            <VBox spacing="4.0">
+                                <Label text="📈 Thống kê chi tiết" styleClass="page-title" />
+                                <Label text="Phân tích doanh thu, xếp hạng sản phẩm và khách hàng" styleClass="page-subtitle" />
+                            </VBox>
+                            <Region HBox.hgrow="ALWAYS" />
+                            <Button text="🔄 Làm mới" onAction="#handleRefreshStats" styleClass="action-btn,primary-btn" />
+                        </HBox>
+
+                        <!-- Hàng thẻ thống kê nhanh -->
+                        <HBox spacing="14.0">
+                            <VBox styleClass="stat-card,stat-4" HBox.hgrow="ALWAYS">
+                                <Label text="🛒 Tổng hoa đã bán" styleClass="stat-title" />
+                                <Label fx:id="sFlowersSold" text="0" styleClass="stat-value" />
+                            </VBox>
+                            <VBox styleClass="stat-card,stat-5" HBox.hgrow="ALWAYS">
+                                <Label text="💵 Tổng doanh thu" styleClass="stat-title" />
+                                <Label fx:id="sRevenue" text="0₫" styleClass="stat-value" />
+                            </VBox>
+                            <VBox styleClass="stat-card,stat-6" HBox.hgrow="ALWAYS">
+                                <Label text="📊 Tỷ lệ mua hàng" styleClass="stat-title" />
+                                <Label fx:id="sPurchaseRate" text="0" styleClass="stat-value" />
+                            </VBox>
+                        </HBox>
+
+                        <!-- Xếp hạng hoa -->
+                        <VBox spacing="8.0" styleClass="table-card">
+                            <Label text="🏆 Xếp hạng hoa bán chạy (cao → thấp)" styleClass="section-title" />
+                            <TableView fx:id="flowerRankTable" styleClass="modern-table" prefHeight="260.0">
+                                <columns>
+                                    <TableColumn fx:id="colFrRank" prefWidth="60" text="#" />
+                                    <TableColumn fx:id="colFrEmoji" prefWidth="50" text="" />
+                                    <TableColumn fx:id="colFrName" prefWidth="240" text="Tên hoa" />
+                                    <TableColumn fx:id="colFrSold" prefWidth="120" text="Đã bán" />
+                                    <TableColumn fx:id="colFrRevenue" prefWidth="180" text="Doanh thu" />
+                                </columns>
+                            </TableView>
+                        </VBox>
+
+                        <!-- Xếp hạng khách hàng -->
+                        <VBox spacing="8.0" styleClass="table-card">
+                            <Label text="👑 Top khách hàng chi tiêu nhiều nhất" styleClass="section-title" />
+                            <Label text="💎 Top 10 khách hàng sẽ nhận ưu đãi đặc biệt!" styleClass="stat-title" style="-fx-text-fill: #dc2626; -fx-font-weight: 800;" />
+                            <TableView fx:id="customerRankTable" styleClass="modern-table" prefHeight="300.0">
+                                <columns>
+                                    <TableColumn fx:id="colCrRank" prefWidth="60" text="#" />
+                                    <TableColumn fx:id="colCrBadge" prefWidth="60" text="" />
+                                    <TableColumn fx:id="colCrName" prefWidth="200" text="Khách hàng" />
+                                    <TableColumn fx:id="colCrOrders" prefWidth="100" text="Đơn hàng" />
+                                    <TableColumn fx:id="colCrItems" prefWidth="100" text="Số hoa" />
+                                    <TableColumn fx:id="colCrSpent" prefWidth="180" text="Tổng chi tiêu" />
+                                </columns>
+                            </TableView>
+                        </VBox>
+
+                        <!-- Doanh thu hàng ngày -->
+                        <VBox spacing="8.0" styleClass="table-card">
+                            <Label text="📅 Doanh thu theo ngày" styleClass="section-title" />
+
+                            <!-- Biểu đồ miền doanh thu -->
+                            <AreaChart fx:id="revenueAreaChart" prefHeight="300.0" styleClass="revenue-area-chart"
+                                       animated="false" createSymbols="true" legendVisible="false">
+                                <xAxis><CategoryAxis label="Ngày" side="BOTTOM" /></xAxis>
+                                <yAxis><NumberAxis label="Doanh thu (VND)" side="LEFT" /></yAxis>
+                            </AreaChart>
+
+                            <TableView fx:id="dailyRevenueTable" styleClass="modern-table" prefHeight="200.0">
+                                <columns>
+                                    <TableColumn fx:id="colDrDate" prefWidth="200" text="Ngày" />
+                                    <TableColumn fx:id="colDrOrders" prefWidth="140" text="Số đơn" />
+                                    <TableColumn fx:id="colDrRevenue" prefWidth="220" text="Doanh thu" />
+                                </columns>
+                            </TableView>
+                        </VBox>
+
+                        <!-- Chi tiết mua hàng khách hàng -->
+                        <VBox spacing="8.0" styleClass="table-card">
+                            <HBox spacing="10.0" alignment="CENTER_LEFT">
+                                <Label text="🔎 Chi tiết mua hàng theo khách" styleClass="section-title" />
+                                <ComboBox fx:id="cbCustomerFilter" promptText="Chọn khách hàng" styleClass="input-field" prefWidth="250" />
+                                <Button text="Xem" onAction="#handleViewCustomerDetail" styleClass="action-btn,primary-btn" />
+                            </HBox>
+                            <TableView fx:id="customerDetailTable" styleClass="modern-table" prefHeight="200.0">
+                                <columns>
+                                    <TableColumn fx:id="colCdEmoji" prefWidth="50" text="" />
+                                    <TableColumn fx:id="colCdName" prefWidth="280" text="Tên hoa" />
+                                    <TableColumn fx:id="colCdQty" prefWidth="120" text="Số lượng" />
+                                    <TableColumn fx:id="colCdTotal" prefWidth="180" text="Thành tiền" />
+                                </columns>
+                            </TableView>
+                        </VBox>
+                    </children>
+                </VBox>
+            </ScrollPane>
+
+            <!-- ==================== BẢNG: ĐƠN HÀNG ==================== -->
+            <VBox fx:id="panelOrders" spacing="18.0" styleClass="content-wrap" visible="false">
+                <padding><Insets bottom="22.0" left="24.0" right="24.0" top="20.0" /></padding>
+                <children>
+                    <HBox alignment="CENTER_LEFT" styleClass="top-row">
+                        <VBox spacing="4.0">
+                            <Label text="🧾 Quản lý đơn hàng" styleClass="page-title" />
+                            <Label text="Xem tất cả đơn hàng đã đặt" styleClass="page-subtitle" />
+                        </VBox>
+                    </HBox>
+                    <HBox spacing="10.0" alignment="CENTER_LEFT" styleClass="form-card">
+                        <Label text="Cập nhật trạng thái:" styleClass="field-label" />
+                        <ComboBox fx:id="cbOrderStatus" styleClass="input-field" prefWidth="180" />
+                        <Button text="Áp dụng" onAction="#handleUpdateOrderStatus" styleClass="action-btn,primary-btn" />
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Button text="🟡 Đang giao" onAction="#handleQuickStatusDelivering" styleClass="action-btn,status-btn-delivering" />
+                        <Button text="🟢 Hoàn thành" onAction="#handleQuickStatusCompleted" styleClass="action-btn,status-btn-completed" />
+                        <Button text="🔴 Đã huỷ" onAction="#handleQuickStatusCancelled" styleClass="action-btn,status-btn-cancelled" />
+                    </HBox>
+                    <VBox spacing="8.0" styleClass="table-card" VBox.vgrow="ALWAYS">
+                        <Label text="Danh sách đơn hàng" styleClass="section-title" />
+                        <TableView fx:id="allOrdersTable" VBox.vgrow="ALWAYS" styleClass="modern-table">
+                            <columns>
+                                <TableColumn fx:id="colOrdId" prefWidth="70" text="Mã ĐH" />
+                                <TableColumn fx:id="colOrdDate" prefWidth="160" text="Thời gian" />
+                                <TableColumn fx:id="colOrdCustomer" prefWidth="200" text="Khách hàng" />
+                                <TableColumn fx:id="colOrdItems" prefWidth="100" text="Số SP" />
+                                <TableColumn fx:id="colOrdTotal" prefWidth="160" text="Tổng tiền" />
+                                <TableColumn fx:id="colOrdTier" prefWidth="120" text="Hạng" />
+                                <TableColumn fx:id="colOrdStatus" prefWidth="130" text="Trạng thái" />
+                            </columns>
+                        </TableView>
+                    </VBox>
+                </children>
+            </VBox>
+        </StackPane>
+    </center>
+</BorderPane>

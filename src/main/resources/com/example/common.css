@@ -1,0 +1,91 @@
+/* ============================================================
+   CHUNG — Kiểu dùng chung cho tất cả trang
+   ============================================================ */
+.root {
+    -fx-background-color: linear-gradient(to bottom right, #f5f7fb, #eef2f8);
+    -fx-font-family: "Segoe UI", "Arial";
+}
+
+/* --- Nhãn dùng chung --- */
+.field-label {
+    -fx-text-fill: #475569;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+.section-icon {
+    -fx-font-size: 22px;
+}
+
+.section-title {
+    -fx-font-size: 18px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1e1b4b;
+}
+
+/* --- Trường nhập dùng chung --- */
+.input-field {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #d8e0ea;
+    -fx-border-radius: 12;
+    -fx-background-radius: 12;
+    -fx-padding: 10 14;
+}
+
+.input-field:focused {
+    -fx-border-color: #6366f1;
+    -fx-background-color: white;
+}
+
+/* --- Nút dùng chung --- */
+.action-btn {
+    -fx-font-weight: 700;
+    -fx-padding: 10 14;
+    -fx-background-radius: 12;
+    -fx-cursor: hand;
+}
+
+.primary-btn {
+    -fx-background-color: linear-gradient(to right, #6366f1, #7c3aed);
+    -fx-text-fill: white;
+}
+
+.primary-btn:hover {
+    -fx-background-color: linear-gradient(to right, #4f46e5, #6d28d9);
+}
+
+.warn-btn {
+    -fx-background-color: linear-gradient(to right, #f59e0b, #d97706);
+    -fx-text-fill: white;
+}
+
+.warn-btn:hover {
+    -fx-background-color: linear-gradient(to right, #d97706, #b45309);
+}
+
+.danger-btn {
+    -fx-background-color: linear-gradient(to right, #ef4444, #dc2626);
+    -fx-text-fill: white;
+}
+
+.danger-btn:hover {
+    -fx-background-color: linear-gradient(to right, #dc2626, #b91c1c);
+}
+
+.ghost-btn {
+    -fx-background-color: #e2e8f0;
+    -fx-text-fill: #1e293b;
+}
+
+.ghost-btn:hover {
+    -fx-background-color: #cbd5e1;
+}
+
+/* --- Thanh cuộn dùng chung (trong suốt) --- */
+.shop-scroll {
+    -fx-background-color: transparent;
+}
+
+.shop-scroll > .viewport {
+    -fx-background-color: transparent;
+}

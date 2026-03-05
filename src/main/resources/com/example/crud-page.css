@@ -1,0 +1,385 @@
+/* ============================================================
+   QUẢN TRỊ — Thanh bên & Tổng quan + Thống kê
+   ============================================================ */
+.crud-root {
+    -fx-background-color: linear-gradient(to bottom right, #f0f4ff, #e8ecf8);
+}
+
+.sidebar {
+    -fx-background-color: linear-gradient(to bottom, #312e81, #1e1b4b);
+}
+
+.sidebar-title {
+    -fx-text-fill: white;
+    -fx-font-size: 20px;
+    -fx-font-weight: 800;
+}
+
+.sidebar-subtitle {
+    -fx-text-fill: #a5b4fc;
+    -fx-font-size: 12px;
+}
+
+.side-separator .line {
+    -fx-border-color: rgba(165, 180, 252, 0.25);
+}
+
+.menu-item {
+    -fx-background-color: transparent;
+    -fx-text-fill: #c7d2fe;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 12 14 12 14;
+    -fx-background-radius: 12;
+    -fx-font-size: 14px;
+    -fx-cursor: hand;
+}
+
+.menu-item:hover {
+    -fx-background-color: rgba(165, 180, 252, 0.18);
+    -fx-text-fill: white;
+}
+
+.menu-item-active {
+    -fx-background-color: linear-gradient(to right, #6366f1, #8b5cf6);
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.35), 8, 0.2, 0, 2);
+}
+
+.menu-item-logout {
+    -fx-text-fill: #fca5a5;
+}
+
+.menu-item-logout:hover {
+    -fx-background-color: rgba(239, 68, 68, 0.15);
+    -fx-text-fill: #fecaca;
+}
+
+.version-text {
+    -fx-text-fill: #818cf8;
+    -fx-font-size: 11px;
+}
+
+.content-wrap {
+    -fx-background-color: transparent;
+}
+
+.top-row {
+    -fx-background-color: white;
+    -fx-padding: 16 20 16 20;
+    -fx-background-radius: 16;
+    -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.08), 14, 0.2, 0, 3);
+}
+
+.page-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1e1b4b;
+}
+
+.page-subtitle {
+    -fx-text-fill: #6366f1;
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+
+.profile-box {
+    -fx-background-color: linear-gradient(to right, #eef2ff, #e0e7ff);
+    -fx-padding: 8 14 8 14;
+    -fx-background-radius: 14;
+}
+
+.profile-name {
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #312e81;
+}
+
+.profile-role {
+    -fx-font-size: 11px;
+    -fx-text-fill: #6366f1;
+    -fx-font-weight: 600;
+}
+
+.avatar-wrap {
+    -fx-alignment: center;
+}
+
+.avatar-circle {
+    -fx-fill: linear-gradient(to bottom right, #7c3aed, #6366f1);
+}
+
+.avatar-text {
+    -fx-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: 800;
+}
+
+/* --- Thẻ thống kê --- */
+.stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-padding: 16 18 16 18;
+    -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.08), 12, 0.2, 0, 3);
+    -fx-min-height: 118;
+    -fx-pref-height: 118;
+    -fx-alignment: TOP_LEFT;
+}
+
+.stat-title {
+    -fx-text-fill: #6366f1;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+.stat-value {
+    -fx-font-size: 26px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1e1b4b;
+}
+
+.stat-1 {
+    -fx-border-color: #c7d2fe;
+    -fx-border-radius: 16;
+    -fx-border-width: 2;
+}
+
+.stat-2 {
+    -fx-border-color: #bbf7d0;
+    -fx-border-radius: 16;
+    -fx-border-width: 2;
+}
+
+.stat-3 {
+    -fx-border-color: #fecaca;
+    -fx-border-radius: 16;
+    -fx-border-width: 2;
+}
+
+.stat-4 {
+    -fx-border-color: #fde68a;
+    -fx-border-radius: 16;
+    -fx-border-width: 2;
+}
+
+.stat-5 {
+    -fx-border-color: #a7f3d0;
+    -fx-border-radius: 16;
+    -fx-border-width: 2;
+}
+
+.stat-6 {
+    -fx-border-color: #c4b5fd;
+    -fx-border-radius: 16;
+    -fx-border-width: 2;
+}
+
+/* --- Biểu mẫu & Bảng --- */
+.form-card,
+.table-card {
+    -fx-background-color: white;
+    -fx-background-radius: 16;
+    -fx-padding: 18;
+    -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.08), 14, 0.2, 0, 3);
+}
+
+.modern-table {
+    -fx-background-radius: 12;
+    -fx-border-color: #e0e7ff;
+    -fx-border-radius: 12;
+}
+
+.modern-table .column-header-background {
+    -fx-background-color: #eef2ff;
+}
+
+.modern-table .column-header,
+.modern-table .filler {
+    -fx-size: 40;
+    -fx-border-color: transparent transparent #e0e7ff transparent;
+}
+
+.modern-table .table-row-cell {
+    -fx-border-color: transparent transparent #f1f5f9 transparent;
+}
+
+.modern-table .table-row-cell:selected {
+    -fx-background-color: #ddd6fe;
+}
+
+/* --- Thanh cuộn thống kê (trong suốt) --- */
+.stat-scroll {
+    -fx-background-color: transparent;
+    -fx-background: transparent;
+}
+
+.stat-scroll .viewport {
+    -fx-background-color: transparent;
+}
+
+.stat-scroll .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+/* --- Màu hàng xếp hạng khách hàng --- */
+.top-1 {
+    -fx-background-color: linear-gradient(to right, #fef9c3, #fde68a);
+}
+
+.top-1:selected {
+    -fx-background-color: #fbbf24;
+}
+
+.top-2 {
+    -fx-background-color: linear-gradient(to right, #f1f5f9, #e2e8f0);
+}
+
+.top-2:selected {
+    -fx-background-color: #94a3b8;
+}
+
+.top-3 {
+    -fx-background-color: linear-gradient(to right, #fff7ed, #fed7aa);
+}
+
+.top-3:selected {
+    -fx-background-color: #fb923c;
+}
+
+.top-10 {
+    -fx-background-color: linear-gradient(to right, #faf5ff, #ede9fe);
+}
+
+.top-10:selected {
+    -fx-background-color: #c4b5fd;
+}
+
+/* --- Màu hàng trạng thái đơn hàng --- */
+.order-delivering {
+    -fx-background-color: linear-gradient(to right, #fef9c3, #fde68a);
+}
+
+.order-delivering:selected {
+    -fx-background-color: #facc15;
+}
+
+.order-completed {
+    -fx-background-color: linear-gradient(to right, #f0fdf4, #dcfce7);
+}
+
+.order-completed:selected {
+    -fx-background-color: #86efac;
+}
+
+.order-cancelled {
+    -fx-background-color: linear-gradient(to right, #fef2f2, #fecaca);
+}
+
+.order-cancelled:selected {
+    -fx-background-color: #fca5a5;
+}
+
+.status-pill-delivering {
+    -fx-text-fill: #a16207;
+    -fx-font-weight: 800;
+}
+
+.status-pill-completed {
+    -fx-text-fill: #15803d;
+    -fx-font-weight: 800;
+}
+
+.status-pill-cancelled {
+    -fx-text-fill: #dc2626;
+    -fx-font-weight: 800;
+}
+
+.status-btn-delivering {
+    -fx-background-color: linear-gradient(to right, #facc15, #fde047);
+    -fx-text-fill: #713f12;
+}
+
+.status-btn-delivering:hover {
+    -fx-background-color: linear-gradient(to right, #eab308, #facc15);
+}
+
+.status-btn-completed {
+    -fx-background-color: linear-gradient(to right, #22c55e, #4ade80);
+    -fx-text-fill: white;
+}
+
+.status-btn-completed:hover {
+    -fx-background-color: linear-gradient(to right, #16a34a, #22c55e);
+}
+
+.status-btn-cancelled {
+    -fx-background-color: linear-gradient(to right, #ef4444, #f87171);
+    -fx-text-fill: white;
+}
+
+.status-btn-cancelled:hover {
+    -fx-background-color: linear-gradient(to right, #dc2626, #ef4444);
+}
+
+/* ========== Biểu đồ miền doanh thu ========== */
+.revenue-area-chart {
+    -fx-background-color: transparent;
+    -fx-padding: 8 0 0 0;
+}
+
+.revenue-area-chart .chart-plot-background {
+    -fx-background-color: #f8faff;
+}
+
+.revenue-area-chart .chart-vertical-grid-lines {
+    -fx-stroke: #e0e7ff;
+    -fx-stroke-dash-array: 4 4;
+}
+
+.revenue-area-chart .chart-horizontal-grid-lines {
+    -fx-stroke: #e0e7ff;
+    -fx-stroke-dash-array: 4 4;
+}
+
+.revenue-area-chart .chart-alternative-row-fill {
+    -fx-fill: transparent;
+}
+
+.revenue-area-chart .default-color0.chart-series-area-fill {
+    -fx-fill: linear-gradient(to bottom, rgba(99, 102, 241, 0.35), rgba(99, 102, 241, 0.02));
+}
+
+.revenue-area-chart .default-color0.chart-series-area-line {
+    -fx-stroke: #6366f1;
+    -fx-stroke-width: 2.5;
+}
+
+.revenue-area-chart .default-color0.chart-area-symbol {
+    -fx-background-color: white, #6366f1;
+    -fx-background-insets: 0, 2;
+    -fx-background-radius: 6;
+    -fx-padding: 5;
+}
+
+.revenue-area-chart .default-color0.chart-area-symbol:hover {
+    -fx-background-color: #6366f1, white;
+    -fx-background-insets: 0, 2;
+    -fx-padding: 6;
+}
+
+.revenue-area-chart .axis-label {
+    -fx-text-fill: #64748b;
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+}
+
+.revenue-area-chart .axis-tick-mark,
+.revenue-area-chart .axis-minor-tick-mark {
+    -fx-stroke: #cbd5e1;
+}
+
+.revenue-area-chart .chart-title {
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #1e293b;
+}

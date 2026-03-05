@@ -1,0 +1,142 @@
+/* ============================================================
+   LỊCH SỬ — Trang lịch sử đơn hàng
+   ============================================================ */
+.history-root {
+    -fx-background-color: linear-gradient(to bottom right, #f5f7fb, #eef2f8);
+}
+
+.history-header {
+    -fx-background-color: linear-gradient(to right, #7c3aed, #6366f1);
+    -fx-padding: 18 24;
+}
+
+.history-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+    -fx-text-fill: white;
+}
+
+.history-back-btn {
+    -fx-background-color: rgba(255,255,255,0.2);
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-font-size: 13px;
+    -fx-background-radius: 10;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+}
+
+.history-back-btn:hover {
+    -fx-background-color: rgba(255,255,255,0.35);
+}
+
+.history-stats-row {
+    -fx-padding: 16 24;
+    -fx-spacing: 16;
+}
+
+.history-stat-card {
+    -fx-background-color: white;
+    -fx-background-radius: 14;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 14;
+    -fx-border-width: 1;
+    -fx-padding: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0, 0, 2);
+    -fx-alignment: center;
+}
+
+.history-stat-number {
+    -fx-font-size: 28px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #6366f1;
+}
+
+.history-stat-label {
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #64748b;
+}
+
+.history-order-card {
+    -fx-background-color: white;
+    -fx-background-radius: 14;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 14;
+    -fx-border-width: 1;
+    -fx-padding: 16;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.06), 8, 0, 0, 2);
+}
+
+.history-order-id {
+    -fx-font-size: 15px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #6366f1;
+}
+
+.history-order-date {
+    -fx-font-size: 12px;
+    -fx-text-fill: #94a3b8;
+    -fx-font-weight: 600;
+}
+
+.history-order-tier {
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #a855f7;
+    -fx-padding: 3 8;
+    -fx-background-color: #f5f3ff;
+    -fx-background-radius: 8;
+}
+
+.history-order-status {
+    -fx-font-size: 12px;
+    -fx-font-weight: 800;
+    -fx-padding: 3 8;
+    -fx-background-radius: 8;
+}
+
+.history-order-status-delivering {
+    -fx-text-fill: #a16207;
+    -fx-background-color: #fef3c7;
+}
+
+.history-order-status-completed {
+    -fx-text-fill: #15803d;
+    -fx-background-color: #dcfce7;
+}
+
+.history-order-status-cancelled {
+    -fx-text-fill: #dc2626;
+    -fx-background-color: #fee2e2;
+}
+
+.history-order-total {
+    -fx-font-size: 16px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1e293b;
+}
+
+.history-item-name {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #334155;
+}
+
+.history-item-qty {
+    -fx-font-size: 12px;
+    -fx-text-fill: #64748b;
+}
+
+.history-item-price {
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #475569;
+}
+
+.history-empty {
+    -fx-font-size: 16px;
+    -fx-text-fill: #94a3b8;
+    -fx-font-weight: 700;
+    -fx-padding: 40 0;
+}

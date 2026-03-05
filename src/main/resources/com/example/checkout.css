@@ -1,0 +1,349 @@
+/* ============================================================
+   THANH TOÁN — Trang thanh toán đầy đủ
+   ============================================================ */
+.checkout-root {
+    -fx-background-color: linear-gradient(to bottom right, #fdf2f8, #ede9fe, #dbeafe);
+}
+
+.checkout-header {
+    -fx-background-color: linear-gradient(to right, #7c3aed, #6366f1, #818cf8);
+}
+
+.checkout-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: 800;
+    -fx-text-fill: white;
+}
+
+.checkout-subtitle {
+    -fx-text-fill: rgba(255, 255, 255, 0.85);
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+}
+
+.checkout-back-btn {
+    -fx-background-color: rgba(255, 255, 255, 0.2);
+    -fx-text-fill: white;
+    -fx-font-weight: 700;
+    -fx-background-radius: 12;
+    -fx-padding: 8 16;
+    -fx-cursor: hand;
+}
+
+.checkout-back-btn:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.3);
+}
+
+.checkout-secure-badge {
+    -fx-background-color: rgba(255, 255, 255, 0.18);
+    -fx-text-fill: white;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-background-radius: 20;
+    -fx-padding: 6 14;
+}
+
+.checkout-member-badge {
+    -fx-font-size: 13px;
+    -fx-font-weight: 800;
+    -fx-padding: 6 14;
+    -fx-background-color: rgba(255,255,255,0.25);
+    -fx-background-radius: 999;
+    -fx-text-fill: white;
+    -fx-border-radius: 999;
+    -fx-border-width: 2;
+    -fx-border-color: rgba(255,255,255,0.5);
+}
+
+/* ---- Thẻ ---- */
+.checkout-card {
+    -fx-background-color: white;
+    -fx-background-radius: 18;
+    -fx-effect: dropshadow(gaussian, rgba(99, 102, 241, 0.10), 16, 0.2, 0, 4);
+}
+
+.checkout-section-title {
+    -fx-font-size: 17px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1e1b4b;
+}
+
+.checkout-separator .line {
+    -fx-border-color: #e2e8f0;
+    -fx-border-width: 0 0 1 0;
+}
+
+/* ---- Trường biểu mẫu ---- */
+.checkout-field-label {
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #475569;
+}
+
+.checkout-input {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-padding: 10 14;
+    -fx-font-size: 13px;
+    -fx-prompt-text-fill: #94a3b8;
+}
+
+.checkout-input:focused {
+    -fx-border-color: #818cf8;
+    -fx-background-color: white;
+    -fx-effect: dropshadow(gaussian, rgba(129, 140, 248, 0.25), 6, 0, 0, 0);
+}
+
+.checkout-combo {
+    -fx-background-color: #f8fafc;
+    -fx-border-color: #e2e8f0;
+    -fx-border-radius: 10;
+    -fx-background-radius: 10;
+    -fx-font-size: 13px;
+    -fx-padding: 2 8;
+}
+
+.checkout-combo:focused {
+    -fx-border-color: #818cf8;
+    -fx-background-color: white;
+}
+
+.checkout-helper {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #64748b;
+    -fx-padding: 2 0 0 2;
+}
+
+.checkout-input-error {
+    -fx-border-color: #ef4444;
+    -fx-background-color: #fef2f2;
+}
+
+.checkout-input-error:focused {
+    -fx-border-color: #ef4444;
+    -fx-effect: dropshadow(gaussian, rgba(239, 68, 68, 0.25), 6, 0, 0, 0);
+}
+
+.checkout-error {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #ef4444;
+    -fx-padding: 2 0 0 2;
+}
+
+/* ---- Nút radio ---- */
+.checkout-radio {
+    -fx-font-size: 14px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #334155;
+    -fx-padding: 6 0;
+    -fx-cursor: hand;
+}
+
+.checkout-radio .radio {
+    -fx-border-color: #cbd5e1;
+    -fx-border-width: 2;
+    -fx-background-color: white;
+}
+
+.checkout-radio:selected .radio {
+    -fx-border-color: #6366f1;
+}
+
+.checkout-radio:selected .dot {
+    -fx-background-color: #6366f1;
+}
+
+/* ---- Hộp kiểm ---- */
+.checkout-checkbox {
+    -fx-font-size: 13px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #475569;
+    -fx-cursor: hand;
+}
+
+.checkout-checkbox .box {
+    -fx-border-color: #cbd5e1;
+    -fx-border-width: 2;
+    -fx-border-radius: 4;
+    -fx-background-radius: 4;
+    -fx-background-color: white;
+}
+
+.checkout-checkbox:selected .box {
+    -fx-background-color: #6366f1;
+    -fx-border-color: #6366f1;
+}
+
+.checkout-checkbox:selected .mark {
+    -fx-background-color: white;
+}
+
+/* ---- Sản phẩm đơn hàng ---- */
+.checkout-item-row {
+    -fx-background-color: linear-gradient(to right, #faf5ff, #eef2ff);
+    -fx-background-radius: 14;
+    -fx-padding: 12;
+}
+
+.checkout-item-emoji {
+    -fx-font-size: 28px;
+}
+
+.checkout-item-name {
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #1e1b4b;
+}
+
+.checkout-item-detail {
+    -fx-font-size: 12px;
+    -fx-text-fill: #6366f1;
+    -fx-font-weight: 600;
+}
+
+.checkout-item-total {
+    -fx-font-size: 14px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #7c3aed;
+}
+
+.checkout-item-delete {
+    -fx-background-color: #fef2f2;
+    -fx-text-fill: #ef4444;
+    -fx-font-size: 13px;
+    -fx-font-weight: 800;
+    -fx-background-radius: 8;
+    -fx-padding: 4 10;
+    -fx-cursor: hand;
+    -fx-border-color: #fecaca;
+    -fx-border-radius: 8;
+    -fx-border-width: 1;
+}
+
+.checkout-item-delete:hover {
+    -fx-background-color: #fee2e2;
+    -fx-text-fill: #dc2626;
+    -fx-border-color: #fca5a5;
+}
+
+/* ---- Mã giảm giá ---- */
+.checkout-coupon-btn {
+    -fx-background-color: linear-gradient(to right, #6366f1, #818cf8);
+    -fx-text-fill: white;
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-background-radius: 10;
+    -fx-padding: 10 18;
+    -fx-cursor: hand;
+}
+
+.checkout-coupon-btn:hover {
+    -fx-background-color: linear-gradient(to right, #4f46e5, #6366f1);
+}
+
+.checkout-coupon-status {
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+}
+
+.checkout-coupon-ok {
+    -fx-text-fill: #16a34a;
+}
+
+.checkout-coupon-fail {
+    -fx-text-fill: #ef4444;
+}
+
+/* ---- Dòng tổng kết ---- */
+.checkout-summary-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #64748b;
+    -fx-font-weight: 600;
+}
+
+.checkout-summary-value {
+    -fx-font-size: 14px;
+    -fx-font-weight: 700;
+    -fx-text-fill: #334155;
+}
+
+.checkout-discount-row {
+    -fx-padding: 2 0;
+}
+
+.checkout-discount-label {
+    -fx-font-size: 13px;
+    -fx-text-fill: #16a34a;
+    -fx-font-weight: 700;
+}
+
+.checkout-discount-value {
+    -fx-font-size: 14px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #16a34a;
+}
+
+.checkout-total-row {
+    -fx-padding: 10 0;
+}
+
+.checkout-total-label {
+    -fx-font-size: 16px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #1e1b4b;
+}
+
+.checkout-total-value {
+    -fx-font-size: 20px;
+    -fx-font-weight: 800;
+    -fx-text-fill: #7c3aed;
+}
+
+/* ---- Nút thanh toán ---- */
+.checkout-pay-btn {
+    -fx-background-color: linear-gradient(to right, #7c3aed, #6366f1);
+    -fx-text-fill: white;
+    -fx-font-size: 15px;
+    -fx-font-weight: 800;
+    -fx-padding: 14 20;
+    -fx-background-radius: 14;
+    -fx-cursor: hand;
+}
+
+.checkout-pay-btn:hover {
+    -fx-background-color: linear-gradient(to right, #6d28d9, #4f46e5);
+    -fx-effect: dropshadow(gaussian, rgba(109, 40, 217, 0.35), 10, 0.2, 0, 3);
+}
+
+.checkout-empty-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #94a3b8;
+    -fx-font-weight: 600;
+    -fx-padding: 18;
+}
+
+.checkout-member-info {
+    -fx-font-size: 12px;
+    -fx-font-weight: 600;
+    -fx-text-fill: #a855f7;
+    -fx-padding: 4 0 0 0;
+}
+
+/* ---- Trạng thái đơn hàng ---- */
+.checkout-order-status {
+    -fx-font-size: 13px;
+    -fx-font-weight: 700;
+    -fx-padding: 4 0 0 0;
+}
+
+.checkout-status-ok {
+    -fx-text-fill: #16a34a;
+}
+
+.checkout-status-fail {
+    -fx-text-fill: #ef4444;
+}

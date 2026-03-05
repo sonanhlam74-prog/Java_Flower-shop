@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane prefHeight="760.0" prefWidth="1200.0" styleClass="checkout-root"
+    xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="com.example.CheckoutController">
+    <top>
+        <VBox spacing="0.0">
+            <children>
+                <HBox alignment="CENTER_LEFT" spacing="12.0" styleClass="checkout-header">
+                    <children>
+                        <Button onAction="#handleBackToShop" styleClass="checkout-back-btn" text="← Về cửa hàng" />
+                        <VBox spacing="2.0">
+                            <children>
+                                <Label text="💳 Thanh toán" styleClass="checkout-title" />
+                                <Label text="Điền thông tin và xác nhận đơn hàng" styleClass="checkout-subtitle" />
+                            </children>
+                        </VBox>
+                        <Region HBox.hgrow="ALWAYS" />
+                        <Label fx:id="lblMemberTier" text="🥉 Đồng" styleClass="checkout-member-badge" />
+                        <Label text="🔒 Thanh toán an toàn" styleClass="checkout-secure-badge" />
+                    </children>
+                    <padding><Insets bottom="14.0" left="24.0" right="24.0" top="14.0" /></padding>
+                </HBox>
+            </children>
+        </VBox>
+    </top>
+
+    <center>
+        <ScrollPane fitToWidth="true" hbarPolicy="NEVER" styleClass="shop-scroll" vbarPolicy="AS_NEEDED">
+            <content>
+                <HBox spacing="24.0">
+                    <padding><Insets bottom="24.0" left="24.0" right="24.0" top="20.0" /></padding>
+                    <children>
+                        <!-- ============ TRÁI — Thông tin người đặt ============ -->
+                        <VBox spacing="14.0" styleClass="checkout-card" HBox.hgrow="ALWAYS">
+                            <children>
+                                <Label text="📦 Thông tin người đặt" styleClass="checkout-section-title" />
+                                <Separator styleClass="checkout-separator" />
+
+                                <VBox spacing="4.0">
+                                    <Label text="Họ và tên *" styleClass="checkout-field-label" />
+                                    <TextField fx:id="txtFullName" promptText="Nguyễn Văn A" styleClass="checkout-input" />
+                                    <Label fx:id="errFullName" text="" styleClass="checkout-error" managed="false" visible="false" />
+                                </VBox>
+
+                                <VBox spacing="4.0">
+                                    <Label text="Email *" styleClass="checkout-field-label" />
+                                    <TextField fx:id="txtEmail" promptText="email@example.com" styleClass="checkout-input" />
+                                    <Label fx:id="errEmail" text="" styleClass="checkout-error" managed="false" visible="false" />
+                                </VBox>
+
+                                <VBox spacing="4.0">
+                                    <Label text="Số điện thoại *" styleClass="checkout-field-label" />
+                                    <TextField fx:id="txtPhone" promptText="0901234567" styleClass="checkout-input" />
+                                    <Label fx:id="errPhone" text="" styleClass="checkout-error" managed="false" visible="false" />
+                                </VBox>
+
+                                <VBox spacing="4.0">
+                                    <Label text="Địa chỉ giao hàng *" styleClass="checkout-field-label" />
+                                    <TextField fx:id="txtAddress" promptText="123 Nguyễn Huệ, Q.Hà Đông, TP.HN" styleClass="checkout-input" />
+                                    <Label fx:id="errAddress" text="" styleClass="checkout-error" managed="false" visible="false" />
+                                </VBox>
+
+                                <VBox spacing="4.0">
+                                    <Label text="Khu vực giao hàng *" styleClass="checkout-field-label" />
+                                    <ComboBox fx:id="cmbDeliveryZone" promptText="Chọn khu vực" styleClass="checkout-combo" maxWidth="999999" />
+                                    <Label fx:id="errDeliveryZone" text="" styleClass="checkout-error" managed="false" visible="false" />
+                                </VBox>
+
+                                <VBox spacing="4.0">
+                                    <Label text="Tốc độ giao hàng" styleClass="checkout-field-label" />
+                                    <ComboBox fx:id="cmbDeliverySpeed" styleClass="checkout-combo" maxWidth="999999" />
+                                    <Label fx:id="lblDeliveryEta" text="" styleClass="checkout-helper" />
+                                </VBox>
+
+                                <VBox spacing="4.0">
+                                    <Label text="Ghi chú" styleClass="checkout-field-label" />
+                                    <TextField fx:id="txtNote" promptText="Giao hàng giờ hành chính..." styleClass="checkout-input" />
+                                </VBox>
+
+                                <Separator styleClass="checkout-separator" />
+
+                                <Label text="💰 Phương thức thanh toán *" styleClass="checkout-section-title" />
+                                <fx:define>
+                                    <ToggleGroup fx:id="paymentGroup" />
+                                </fx:define>
+                                <RadioButton fx:id="rbBank" text="🏦 Chuyển khoản ngân hàng" toggleGroup="$paymentGroup" styleClass="checkout-radio" />
+                                <RadioButton fx:id="rbVisa" text="💳 Visa / Mastercard" toggleGroup="$paymentGroup" styleClass="checkout-radio" />
+                                <RadioButton fx:id="rbEWallet" text="📱 Ví điện tử (MoMo, ZaloPay...)" toggleGroup="$paymentGroup" styleClass="checkout-radio" />
+                                <Label fx:id="errPayment" text="" styleClass="checkout-error" managed="false" visible="false" />
+
+                                <Separator styleClass="checkout-separator" />
+
+                                <CheckBox fx:id="cbTerms" text="Tôi đã đồng ý với Điều khoản &amp; Điều kiện" styleClass="checkout-checkbox" />
+                                <Label fx:id="errTerms" text="" styleClass="checkout-error" managed="false" visible="false" />
+                            </children>
+                            <padding><Insets bottom="22.0" left="22.0" right="22.0" top="22.0" /></padding>
+                        </VBox>
+
+                        <!-- ============ PHẢI — Chi tiết đơn hàng ============ -->
+                        <VBox spacing="14.0" styleClass="checkout-card" prefWidth="420.0" minWidth="380.0">
+                            <children>
+                                <Label text="🛒 Chi tiết đơn hàng" styleClass="checkout-section-title" />
+                                <Separator styleClass="checkout-separator" />
+
+                                <VBox fx:id="orderItemsBox" spacing="10.0" />
+
+                                <Separator styleClass="checkout-separator" />
+
+                                <Label text="🎟 Mã giảm giá" styleClass="checkout-field-label" />
+                                <HBox spacing="8.0" alignment="CENTER_LEFT">
+                                    <children>
+                                        <TextField fx:id="txtCoupon" promptText="Nhập mã giảm giá" styleClass="checkout-input" HBox.hgrow="ALWAYS" />
+                                        <Button onAction="#handleApplyCoupon" text="Áp dụng" styleClass="checkout-coupon-btn" />
+                                    </children>
+                                </HBox>
+                                <Label fx:id="lblCouponStatus" text="" styleClass="checkout-coupon-status" managed="false" visible="false" />
+
+                                <Separator styleClass="checkout-separator" />
+
+                                <HBox alignment="CENTER_LEFT">
+                                    <children>
+                                        <Label text="Tạm tính" styleClass="checkout-summary-label" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="lblSubtotal" text="0 VND" styleClass="checkout-summary-value" />
+                                    </children>
+                                </HBox>
+
+                                <HBox alignment="CENTER_LEFT">
+                                    <children>
+                                        <Label text="Thuế (8%)" styleClass="checkout-summary-label" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="lblTax" text="0 VND" styleClass="checkout-summary-value" />
+                                    </children>
+                                </HBox>
+
+                                <HBox alignment="CENTER_LEFT">
+                                    <children>
+                                        <Label fx:id="lblShippingLabel" text="Phí giao hàng" styleClass="checkout-summary-label" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="lblShippingFee" text="0 VND" styleClass="checkout-summary-value" />
+                                    </children>
+                                </HBox>
+
+                                <HBox fx:id="discountRow" alignment="CENTER_LEFT" styleClass="checkout-discount-row" visible="false" managed="false">
+                                    <children>
+                                        <Label fx:id="lblDiscountLabel" text="Giảm giá thành viên (0%)" styleClass="checkout-discount-label" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="lblDiscount" text="-0 VND" styleClass="checkout-discount-value" />
+                                    </children>
+                                </HBox>
+
+                                <HBox fx:id="couponDiscountRow" alignment="CENTER_LEFT" styleClass="checkout-discount-row" visible="false" managed="false">
+                                    <children>
+                                        <Label fx:id="lblCouponDiscountLabel" text="Mã giảm giá" styleClass="checkout-discount-label" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="lblCouponDiscount" text="-0 VND" styleClass="checkout-discount-value" />
+                                    </children>
+                                </HBox>
+
+                                <Separator styleClass="checkout-separator" />
+
+                                <HBox alignment="CENTER_LEFT" styleClass="checkout-total-row">
+                                    <children>
+                                        <Label text="Tổng cộng" styleClass="checkout-total-label" />
+                                        <Region HBox.hgrow="ALWAYS" />
+                                        <Label fx:id="lblTotal" text="0 VND" styleClass="checkout-total-value" />
+                                    </children>
+                                </HBox>
+
+                                <Label fx:id="lblMemberInfo" text="" styleClass="checkout-member-info" wrapText="true" />
+
+                                <Region prefHeight="4.0" />
+
+                                <Button fx:id="btnConfirm" maxWidth="999999" onAction="#handleConfirmOrder" styleClass="checkout-pay-btn" text="✅ Xác nhận đơn hàng" />
+                                <Label fx:id="lblOrderStatus" text="" styleClass="checkout-order-status" wrapText="true" />
+                            </children>
+                            <padding><Insets bottom="20.0" left="20.0" right="20.0" top="20.0" /></padding>
+                        </VBox>
+                    </children>
+                </HBox>
+            </content>
+        </ScrollPane>
+    </center>
+</BorderPane>

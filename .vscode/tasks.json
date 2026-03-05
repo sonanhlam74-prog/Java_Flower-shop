@@ -1,0 +1,29 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Maven: compile (wrapper)",
+      "type": "shell",
+      "command": "./mvnw.cmd",
+      "args": [
+        "-q",
+        "-DskipTests",
+        "compile"
+      ],
+      "group": "build",
+      "problemMatcher": [
+        "$javac"
+      ]
+    },
+    {
+      "label": "Maven: run JavaFX (wrapper)",
+      "type": "shell",
+      "command": "./mvnw.cmd",
+      "args": [
+        "-DskipTests",
+        "javafx:run"
+      ],
+      "group": "test"
+    }
+  ]
+}

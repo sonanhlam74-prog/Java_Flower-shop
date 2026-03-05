@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" prefHeight="660.0" prefWidth="580.0" spacing="0.0"
+      styleClass="auth-root"
+      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.example.ProfileController">
+    <children>
+        <!-- Thanh trên -->
+        <HBox styleClass="auth-topbar" alignment="CENTER">
+            <children>
+                <Label text="🌸 Flower Shop" styleClass="auth-brand" />
+            </children>
+            <padding><Insets bottom="10.0" left="24.0" right="24.0" top="10.0" /></padding>
+        </HBox>
+
+        <!-- Thẻ -->
+        <VBox alignment="TOP_LEFT" maxWidth="460.0" spacing="10.0" styleClass="auth-card">
+            <children>
+                <!-- Tiêu đề -->
+                <Label text="👤" styleClass="auth-icon" />
+                <Label text="Hồ sơ cá nhân" styleClass="auth-title" />
+                <Label text="Xem và chỉnh sửa thông tin tài khoản" styleClass="auth-subtitle" />
+
+                <Region prefHeight="4.0" />
+
+                <!-- Thông tin tài khoản (chỉ đọc) -->
+                <Label text="Tài khoản" styleClass="field-label" />
+                <Label fx:id="lblUsername" text="-" styleClass="profile-value" />
+
+                <Label text="Email" styleClass="field-label" />
+                <Label fx:id="lblEmail" text="-" styleClass="profile-value" />
+
+                <Separator />
+
+                <!-- Tên có thể chỉnh sửa -->
+                <Label text="Họ và tên" styleClass="field-label" />
+                <HBox spacing="8" alignment="CENTER_LEFT">
+                    <children>
+                        <TextField fx:id="txtFullName" promptText="Nhập họ và tên" styleClass="auth-input" HBox.hgrow="ALWAYS" />
+                        <Button onAction="#handleSaveName" styleClass="profile-save-btn" text="💾 Lưu" />
+                    </children>
+                </HBox>
+                <Label fx:id="lblNameStatus" text="" styleClass="auth-status" />
+
+                <Separator />
+
+                <!-- Thông tin hội viên -->
+                <Label text="Thông tin thành viên" styleClass="profile-section-title" />
+
+                <HBox spacing="12" alignment="CENTER_LEFT" styleClass="profile-tier-box">
+                    <children>
+                        <Label fx:id="lblTierIcon" text="🥉" styleClass="profile-tier-icon" />
+                        <VBox spacing="2">
+                            <children>
+                                <Label fx:id="lblTierName" text="Đồng" styleClass="profile-tier-name" />
+                                <Label fx:id="lblDiscount" text="Giảm giá: 0%" styleClass="profile-tier-detail" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <HBox spacing="20" alignment="CENTER_LEFT">
+                    <children>
+                        <VBox spacing="2" alignment="CENTER">
+                            <children>
+                                <Label text="Tích lũy" styleClass="field-label" />
+                                <Label fx:id="lblTotalSpent" text="0₫" styleClass="profile-stat-value" />
+                            </children>
+                        </VBox>
+                        <VBox spacing="2" alignment="CENTER">
+                            <children>
+                                <Label text="Hạng tiếp theo" styleClass="field-label" />
+                                <Label fx:id="lblNextTier" text="-" styleClass="profile-stat-value" />
+                            </children>
+                        </VBox>
+                        <VBox spacing="2" alignment="CENTER">
+                            <children>
+                                <Label text="Còn thiếu" styleClass="field-label" />
+                                <Label fx:id="lblAmountToNext" text="-" styleClass="profile-stat-value" />
+                            </children>
+                        </VBox>
+                    </children>
+                </HBox>
+
+                <Region prefHeight="4.0" />
+
+                <!-- Các nút -->
+                <Button maxWidth="999999" onAction="#handleBackToShop" styleClass="auth-secondary-btn" text="← Về cửa hàng" />
+            </children>
+            <padding><Insets bottom="24.0" left="32.0" right="32.0" top="24.0" /></padding>
+        </VBox>
+    </children>
+</VBox>
