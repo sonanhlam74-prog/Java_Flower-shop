@@ -1,0 +1,12 @@
+1  : git clone "link git "
+2  : git cd "Thu muc "
+
+3  : git branch -a ("Co the lam hoac khong")\
+4  : git checkout dev 
+5  : cd Java_Flower-shop
+   Note: phai pull truoc khi code 
+6   :git pull origin dev
+7   :git add .
+8   :git commit -m "Tinh nang dang lam"
+10  :guit push origin dev
+11  :Kiem  tra lai git 
