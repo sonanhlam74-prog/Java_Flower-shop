@@ -1,7 +1,14 @@
 target/
 .idea/
 .vscode/*.log
+.vscode/c_cpp_properties.json
+.vscode/launch.json
 *.iml
 .classpath
 .project
 .settings/
+dependency-reduced-pom.xml
+skills-lock.json
+*.stackdump
+.github/java-upgrade/
+FlowerShop.exe

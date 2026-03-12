@@ -13,8 +13,7 @@ public class App extends Application {
     private Stage primaryStage;
 
     /** Tên người dùng đang đăng nhập, null nghĩa là khách */
-    private static String currentUser = null;
-
+    private static String currentUser = null;   
     public static String getCurrentUser() { return currentUser; }
     public static void setCurrentUser(String user) { currentUser = user; }
     public static boolean isLoggedIn() { return currentUser != null; }

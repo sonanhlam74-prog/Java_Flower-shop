@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 
-<StackPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+<StackPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
     fx:controller="com.example.ShopController">
 <VBox styleClass="shop-root">
 
@@ -89,7 +89,7 @@
         </padding>
         <children>
             <Button onAction="#handleScrollToTet" styleClass="category-nav-btn" text="🌺 Hoa Tết" />
-            <Button onAction="#handleScrollToFuneral" styleClass="category-nav-btn" text="🕊️ Hoa Chia Buồn" />
+            <Button onAction="#handleScrollToFuneral" styleClass="category-nav-btn" text=" Hoa Chia Buồn" />
             <Button onAction="#handleScrollToCelebrate" styleClass="category-nav-btn" text="🎉 Hoa Chúc Mừng" />
             <Button onAction="#handleScrollToBirthday" styleClass="category-nav-btn" text="🎂 Hoa Sinh Nhật" />
             <Button onAction="#handleScrollToWedding" styleClass="category-nav-btn" text="💒 Hoa Cưới" />

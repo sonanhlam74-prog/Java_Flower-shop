@@ -2,7 +2,6 @@ package com.example;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
-
 /**
  * Kho người dùng in-memory đơn giản cho xác thực.
  * Hỗ trợ đăng ký, đăng nhập, xác minh email và đặt lại mật khẩu.
@@ -26,7 +25,8 @@ public final class UserStore {
     static {
         // Tạo sẵn tài khoản admin mặc định
         USERS.put("admin", new User("123456", "Nguyễn Admin", "admin@flowershop.vn"));
-    }
+
+    }   
 
     private UserStore() {
     }

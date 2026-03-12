@@ -30,7 +30,7 @@ import javafx.scene.layout.VBox;
 
 public class CrudController {
     private static final String ALERT_TITLE = "Thông báo hệ thống";
-    private static final NumberFormat VND = NumberFormat.getInstance(Locale.of("vi", "VN"));
+    private static final NumberFormat VND = NumberFormat.getInstance(new Locale("vi", "VN"));
 
     /* ====== Nút thanh bên ====== */
     @FXML private Button btnMenuDashboard;

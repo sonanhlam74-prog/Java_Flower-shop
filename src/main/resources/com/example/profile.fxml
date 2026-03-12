@@ -11,7 +11,7 @@
 
 <VBox alignment="CENTER" prefHeight="660.0" prefWidth="580.0" spacing="0.0"
       styleClass="auth-root"
-      xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1"
+    xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
       fx:controller="com.example.ProfileController">
     <children>
         <!-- Thanh trên -->
