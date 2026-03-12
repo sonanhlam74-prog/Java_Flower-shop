@@ -33,7 +33,7 @@ public class App extends Application {
     public void start(Stage stage) throws Exception {
         primaryStage = stage;
         setApplicationIcon(primaryStage);
-        showShopScene();
+        showSplashScreen();
     }
 
     private static void setApplicationIcon(Stage stage) {
@@ -54,6 +54,20 @@ public class App extends Application {
         scene.getStylesheets().addAll(css("common.css"), css("shop.css"));
         primaryStage.setTitle("Flower Shop");
         primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+
+    public void showSplashScreen() throws Exception {
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/example/SplashScreen.fxml"));
+        Parent root = loader.load();
+
+        SplashController controller = loader.getController();
+        controller.setApp(this);
+
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("Flower Shop - Loading");
+        primaryStage.setScene(scene);
+        primaryStage.centerOnScreen();
         primaryStage.show();
     }
 

@@ -151,7 +151,7 @@ if exist %WRAPPER_JAR% (
     if "%MVNW_VERBOSE%" == "true" (
         echo Finished downloading %WRAPPER_JAR%
     )
-)
+) .
 @REM End of extension
 
 @REM Provide a "standardized" way to retrieve the CLI args that will
