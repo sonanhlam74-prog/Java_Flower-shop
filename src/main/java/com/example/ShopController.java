@@ -143,21 +143,59 @@ public class ShopController {
 
     public void setApp(App app) {
         this.app = app;
+        
+        // Tải dữ liệu nặng sau 500ms để UI render trước
+        new Thread(() -> {
+            try {
+                Thread.sleep(500);
+                javafx.application.Platform.runLater(this::loadDataInBackground);
+            } catch (InterruptedException e) {
+                Thread.currentThread().interrupt();
+            }
+        }, "DataLoaderThread").start();
     }
 
     @FXML
     public void initialize() {
+        // Chỉ setup UI nhanh, không tải dữ liệu
         setupFlowerCards();
-        loadFlowerImages();
         setupCartTooltip();
         showAllSections();
         viewMorePanel.setVisible(false);
         viewMorePanel.setManaged(false);
         renderSuggestionButtons("");
         setupPriceSlider();
-        refreshStats();
-        refreshAvatar();
-        updateSmartInsights();
+    }
+    
+    /**
+     * Tải dữ liệu nặng trong background (images, stats, avatar)
+     * Được gọi sau khi UI đã render
+     */
+    private void loadDataInBackground() {
+        javafx.concurrent.Task<Void> dataTask = new javafx.concurrent.Task<Void>() {
+            @Override
+            protected Void call() throws Exception {
+                // Tải images từ URL - chạy trên UI thread
+                updateMessage("Tải hình ảnh sản phẩm...");
+                javafx.application.Platform.runLater(() -> loadFlowerImages());
+                Thread.sleep(200);
+                
+                updateMessage("Tải thông tin giỏ hàng...");
+                javafx.application.Platform.runLater(() -> refreshStats());
+                Thread.sleep(100);
+                
+                updateMessage("Tải thông tin tài khoản...");
+                javafx.application.Platform.runLater(() -> refreshAvatar());
+                Thread.sleep(100);
+                
+                updateMessage("Tải đề xuất...");
+                javafx.application.Platform.runLater(() -> updateSmartInsights());
+                
+                return null;
+            }
+        };
+        
+        new Thread(dataTask, "BackgroundDataLoader").start();
     }
 
     @FXML

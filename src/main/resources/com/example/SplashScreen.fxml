@@ -12,6 +12,6 @@
          </font>
       </Label>
       <ProgressBar fx:id="progressBar" layoutX="100.0" layoutY="180.0" prefWidth="300.0" />
-      <Label layoutX="195.0" layoutY="210.0" text="Đang tải dữ liệu..." />
+      <Label fx:id="lblStatus" layoutX="195.0" layoutY="210.0" text="Đang khởi động..." />
    </children>
 </AnchorPane>
