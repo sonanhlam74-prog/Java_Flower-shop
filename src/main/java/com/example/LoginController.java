@@ -37,7 +37,7 @@ public class LoginController {
         App.setCurrentUser(username);
 
         try {
-            app.showCrudScene(username);
+            app.showLoadingBeforeDashboard(username);
         } catch (Exception ex) {
             ex.printStackTrace();
             showWarning("Lỗi hệ thống", "Không thể quay lại cửa hàng.");

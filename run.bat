@@ -13,7 +13,7 @@ if not exist "!JAVA_HOME!\bin\java.exe" (
     exit /b 1
 )
 
-set "PATH=!JAVA_HOME!\bin;%PATH%"
+set "PATH=!JAVA_HOME!\bin;%PATH%"       
 
 if /I "%~1"=="dev" goto :run_dev
 
