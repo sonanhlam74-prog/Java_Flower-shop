@@ -169,6 +169,31 @@ public class App extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+    
+    //loading màn hình chờ của dashboard (CRUD) sau khi đăng nhập thành công
+    public void showLoadingBeforeDashboard(String username) throws Exception {
+        // Tải giao diện loading (dùng chung file splash.fxml)
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/example/splash.fxml"));
+        Parent root = loader.load();
+
+        // Thiết lập Scene mới cho màn hình loading
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.centerOnScreen();
+        primaryStage.show();
+
+        // Tạo hiệu ứng chờ 1.5 giây rồi mới vào màn hình CRUD (Dashboard)
+        javafx.animation.PauseTransition delay = new javafx.animation.PauseTransition(javafx.util.Duration.seconds(1.5));
+        delay.setOnFinished(event -> {
+            try {
+                // Sau khi loading xong, gọi hàm hiện Dashboard có sẵn của bạn
+                showCrudScene(username);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        delay.play();
+    }
 
     public static void main(String[] args) {
         launch(args);
