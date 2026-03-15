@@ -31,23 +31,23 @@ public class SplashController {
                 if (isLoginMode) {
                     updateMessage("Đang xác thực tài khoản...");
                     updateProgress(0.2, 1.0);
-                    Thread.sleep(5000);
+                    Thread.sleep(2000);
 
                     updateMessage("Đang tải dữ liệu...");
                     updateProgress(0.5, 1.0);
-                    Thread.sleep(5000);
+                    Thread.sleep(2000);
 
                     updateMessage("Chuẩn bị Dashboard...");
                     updateProgress(0.8, 1.0);
-                    Thread.sleep(5000);
+                    Thread.sleep(2000);
                 } else {
                     updateMessage("Chuẩn bị giao diện...");
                     updateProgress(0.2, 1.0);
-                    Thread.sleep(5000);
+                    Thread.sleep(2000);
 
                     updateMessage("Tải dữ liệu cửa hàng...");
                     updateProgress(0.5, 1.0);
-                    Thread.sleep(5000);
+                    Thread.sleep(2000);
                 }
                 return null;
             }

@@ -1,5 +1,8 @@
 package com.example;
 
+import com.repository.GuestSpendingDAO;
+import com.repository.OrderDAO;
+import com.service.UserService;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -30,6 +33,7 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.util.Duration;
 
@@ -66,6 +70,8 @@ public class ShopController {
     private VBox priceFilterPanel;
     @FXML
     private Button btnPriceToggle;
+    @FXML
+    private Button btnAdmin;
     @FXML
     private Button btnCartIcon;
     @FXML
@@ -143,7 +149,12 @@ public class ShopController {
 
     public void setApp(App app) {
         this.app = app;
-        
+
+        // Hiển thị nút quản trị chỉ khi tài khoản có quyền admin
+        boolean admin = App.isAdmin();
+        btnAdmin.setVisible(admin);
+        btnAdmin.setManaged(admin);
+
         // Tải dữ liệu nặng sau 500ms để UI render trước
         new Thread(() -> {
             try {
@@ -830,6 +841,12 @@ public class ShopController {
     @FXML
     public void handleAvatarLogout() {
         App.logout();
+        // Khôi phục rank guest theo IP — mỗi máy có tích lũy riêng
+        double guestSpent = new GuestSpendingDAO().getTotalSpent(App.getGuestIp());
+        MembershipStore.loadForUser(guestSpent);
+        // Tải lịch sử đơn hàng của guest từ DB
+        List<OrderHistoryStore.Order> guestOrders = new OrderDAO().loadByGuestIp(App.getGuestIp());
+        OrderHistoryStore.loadFromDB(guestOrders);
         avatarDropdown.setVisible(false);
         avatarDropdown.setManaged(false);
         refreshAvatar();
@@ -840,9 +857,40 @@ public class ShopController {
     private void refreshAvatar() {
         boolean loggedIn = App.isLoggedIn();
         String name = App.getDisplayName();
+        String username = App.getCurrentUser();
 
-        String initial = name.isEmpty() ? "G" : name.substring(0, 1).toUpperCase();
-        btnAvatar.setText(initial);
+        // Thử hiển thị ảnh đại diện nếu đã đăng nhập
+        boolean avatarSet = false;
+        if (loggedIn && username != null) {
+            String path = UserService.getInstance().getAvatarPath(username);
+            if (path != null && !path.isBlank()) {
+                try {
+                    File f = new File(path);
+                    if (f.exists()) {
+                        Image img = new Image(f.toURI().toString(), 38, 38, false, true);
+                        ImageView iv = new ImageView(img);
+                        iv.setFitWidth(38);
+                        iv.setFitHeight(38);
+                        iv.setPreserveRatio(false);
+                        Circle clip = new Circle(19, 19, 19);
+                        iv.setClip(clip);
+                        btnAvatar.setGraphic(iv);
+                        btnAvatar.setText("");
+                        avatarSet = true;
+                    }
+                } catch (Exception ignored) { }
+            }
+        }
+
+        if (!avatarSet) {
+            btnAvatar.setGraphic(null);
+            btnAvatar.setStyle("");
+            String initial = name.isEmpty() ? "G" : name.substring(0, 1).toUpperCase();
+            btnAvatar.setText(initial);
+        } else {
+            // Ẩn background gradient khi hiển thị ảnh
+            btnAvatar.setStyle("-fx-background-color: transparent; -fx-padding: 3;");
+        }
 
         if (loggedIn) {
             btnAvatar.getStyleClass().removeAll("avatar-guest");

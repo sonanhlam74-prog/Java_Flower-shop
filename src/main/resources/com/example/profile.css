@@ -58,3 +58,43 @@
     -fx-font-weight: 800;
     -fx-text-fill: #6366f1;
 }
+
+/* ---- Avatar ---- */
+.profile-avatar-pane {
+    -fx-background-color: linear-gradient(to bottom right, #7c3aed, #6366f1);
+    -fx-background-radius: 50;
+    -fx-min-width: 100;
+    -fx-min-height: 100;
+    -fx-max-width: 100;
+    -fx-max-height: 100;
+}
+
+/* ---- Stat cells (ô thống kê hội viên) ---- */
+.profile-stat-cell {
+    -fx-border-color: transparent #e0e7ff transparent transparent;
+    -fx-border-width: 0 1 0 0;
+    -fx-padding: 8 12;
+}
+.profile-stat-cell:last-child {
+    -fx-border-width: 0;
+}
+
+.profile-avatar-initial {
+    -fx-font-size: 36px;
+    -fx-font-weight: 800;
+    -fx-text-fill: white;
+}
+
+.profile-change-avatar-btn {
+    -fx-background-color: #f1f5f9;
+    -fx-text-fill: #475569;
+    -fx-font-size: 12px;
+    -fx-font-weight: 700;
+    -fx-padding: 6 14;
+    -fx-background-radius: 10;
+    -fx-cursor: hand;
+}
+
+.profile-change-avatar-btn:hover {
+    -fx-background-color: #e2e8f0;
+}

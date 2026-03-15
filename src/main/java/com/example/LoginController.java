@@ -1,5 +1,8 @@
 package com.example;
 
+import com.repository.OrderDAO;
+import com.service.UserService;
+import java.util.List;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -29,15 +32,24 @@ public class LoginController {
             return;
         }
 
-        if (!UserStore.authenticate(username, password)) {
+        if (!UserService.getInstance().authenticate(username, password)) {
             showWarning("Đăng nhập thất bại", "Sai tài khoản hoặc mật khẩu.");
             return;
         }
 
         App.setCurrentUser(username);
+        App.setCurrentRole(UserService.getInstance().getRole(username));
+
+       
+        double spent = UserService.getInstance().getTotalSpent(username);
+        MembershipStore.loadForUser(spent);
+
+        // Tải lịch sử đơn hàng của tài khoản từ DB
+        List<OrderHistoryStore.Order> orders = new OrderDAO().loadByUser(username);
+        OrderHistoryStore.loadFromDB(orders);
 
         try {
-            app.showLoadingBeforeDashboard(username);
+            app.showShopScene();
         } catch (Exception ex) {
             ex.printStackTrace();
             showWarning("Lỗi hệ thống", "Không thể quay lại cửa hàng.");

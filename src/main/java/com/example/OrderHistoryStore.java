@@ -144,16 +144,22 @@ public final class OrderHistoryStore {
         public int getOrderCount() { return orderCount; }
     }
 
-    private static final List<Order> ORDERS = new ArrayList<>();
+    private static final List<Order> ORDERS = Collections.synchronizedList(new ArrayList<>());
     private static int nextOrderId = 1;
     private static final DateTimeFormatter FMT = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
     private static final DateTimeFormatter DATE_FMT = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
     private OrderHistoryStore() {}
 
+    /** Reset toàn bộ đơn hàng — chỉ dùng trong test để tránh state bleeding. */
+    static synchronized void clearForTesting() {
+        ORDERS.clear();
+        nextOrderId = 1;
+    }
+
     /* ======================= Ghi nhận ======================= */
 
-    public static Order recordOrder(Map<String, Integer> cartSnapshot,
+    public static synchronized Order recordOrder(Map<String, Integer> cartSnapshot,
                                      double subtotal, double tax, double discount, double total,
                                      String customerName) {
         List<OrderItem> items = new ArrayList<>();
@@ -176,13 +182,57 @@ public final class OrderHistoryStore {
         return order;
     }
 
-    /* ======================= Truy vấn cơ bản ======================= */
+    /**
+     * Ghi nhận đơn hàng với ID do DB cấp phát.
+     * Dùng sau khi đã persist thành công qua OrderDAO.
+     */
+    public static synchronized Order recordOrderWithId(int dbOrderId,
+                                     Map<String, Integer> cartSnapshot,
+                                     double subtotal, double tax, double discount, double total,
+                                     String customerName) {
+        List<OrderItem> items = new ArrayList<>();
+        for (Map.Entry<String, Integer> entry : cartSnapshot.entrySet()) {
+            if (entry.getValue() <= 0) continue;
+            CartStore.Product product = CartStore.getProduct(entry.getKey());
+            if (product == null) continue;
+            items.add(new OrderItem(
+                product.getName(), product.getEmoji(),
+                entry.getValue(), product.getPrice()
+            ));
+        }
 
-    public static List<Order> getAllOrders() {
-        return Collections.unmodifiableList(ORDERS);
+        String tier = MembershipStore.getCurrentTier().getDisplayName();
+        LocalDateTime now = LocalDateTime.now();
+        String dateTime = now.format(FMT);
+        Order order = new Order(dbOrderId, dateTime, now, items, subtotal, tax, discount, total, tier,
+                customerName == null || customerName.isBlank() ? "Khách vãng lai" : customerName);
+        ORDERS.add(0, order);
+        // Đảm bảo nextOrderId luôn lớn hơn dbOrderId để tránh xung đột khi offline
+        if (nextOrderId <= dbOrderId) nextOrderId = dbOrderId + 1;
+        return order;
     }
 
-    public static int getOrderCount() {
+    /**
+     * Tải danh sách đơn hàng từ DB vào store — thay thế toàn bộ state hiện tại.
+     * Gọi khi đăng nhập hoặc đăng xuất để đồng bộ đúng tài khoản.
+     */
+    public static synchronized void loadFromDB(List<Order> orders) {
+        ORDERS.clear();
+        ORDERS.addAll(orders); // orders đã sắp xếp mới nhất trước từ DB
+        int maxId = 0;
+        for (Order o : orders) {
+            if (o.getOrderId() > maxId) maxId = o.getOrderId();
+        }
+        nextOrderId = maxId + 1;
+    }
+
+    /* ======================= Truy vấn cơ bản ======================= */
+
+    public static synchronized List<Order> getAllOrders() {
+        return Collections.unmodifiableList(new ArrayList<>(ORDERS));
+    }
+
+    public static synchronized int getOrderCount() {
         int count = 0;
         for (Order o : ORDERS) {
             if (STATUS_COMPLETED.equals(o.getStatus())) count++;
@@ -190,7 +240,7 @@ public final class OrderHistoryStore {
         return count;
     }
 
-    public static double getTotalRevenue() {
+    public static synchronized double getTotalRevenue() {
         double sum = 0;
         for (Order o : ORDERS) {
             if (!STATUS_COMPLETED.equals(o.getStatus())) continue;
@@ -202,7 +252,7 @@ public final class OrderHistoryStore {
     /* ======================= Thống kê ======================= */
 
     /** Tổng số hoa đã bán qua tất cả đơn hàng (chỉ tính đơn hoàn thành) */
-    public static int getTotalFlowersSold() {
+    public static synchronized int getTotalFlowersSold() {
         int count = 0;
         for (Order o : ORDERS) {
             if (!STATUS_COMPLETED.equals(o.getStatus())) continue;
@@ -212,7 +262,7 @@ public final class OrderHistoryStore {
     }
 
     /** Số khách hàng duy nhất (chỉ tính đơn hoàn thành) */
-    public static int getUniqueCustomerCount() {
+    public static synchronized int getUniqueCustomerCount() {
         Set<String> names = new HashSet<>();
         for (Order o : ORDERS) {
             if (!STATUS_COMPLETED.equals(o.getStatus())) continue;
@@ -229,7 +279,7 @@ public final class OrderHistoryStore {
     }
 
     /** Xếp hạng doanh số hoa, giảm dần theo tổng bán (chỉ tính đơn hoàn thành) */
-    public static List<FlowerStat> getFlowerRanking() {
+    public static synchronized List<FlowerStat> getFlowerRanking() {
         Map<String, int[]> soldMap = new LinkedHashMap<>();    // tên -> [đã bán]
         Map<String, double[]> revMap = new LinkedHashMap<>();  // tên -> [doanh thu]
         Map<String, String> emojiMap = new LinkedHashMap<>();
@@ -252,7 +302,7 @@ public final class OrderHistoryStore {
     }
 
     /** Xếp hạng chi tiêu khách hàng, giảm dần theo tổng chi (chỉ tính đơn hoàn thành) */
-    public static List<CustomerStat> getCustomerRanking() {
+    public static synchronized List<CustomerStat> getCustomerRanking() {
         Map<String, double[]> spentMap = new LinkedHashMap<>();
         Map<String, int[]> orderCountMap = new LinkedHashMap<>();
         Map<String, int[]> itemCountMap = new LinkedHashMap<>();
@@ -276,7 +326,7 @@ public final class OrderHistoryStore {
 
 
     /** Phân tích doanh thu theo ngày, giảm dần */
-    public static List<DailyRevenue> getDailyRevenue() {
+    public static synchronized List<DailyRevenue> getDailyRevenue() {
         Map<String, double[]> revMap = new LinkedHashMap<>();
         Map<String, int[]> countMap = new LinkedHashMap<>();
 
@@ -295,7 +345,7 @@ public final class OrderHistoryStore {
     }
 
     /** Chi tiết: khách hàng đã mua những hoa nào */
-    public static List<FlowerStat> getFlowersByCustomer(String customerName) {
+    public static synchronized List<FlowerStat> getFlowersByCustomer(String customerName) {
         Map<String, int[]> soldMap = new LinkedHashMap<>();
         Map<String, double[]> revMap = new LinkedHashMap<>();
         Map<String, String> emojiMap = new LinkedHashMap<>();

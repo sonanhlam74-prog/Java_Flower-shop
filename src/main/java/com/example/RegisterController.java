@@ -1,5 +1,6 @@
 package com.example;
 
+import com.service.UserService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
@@ -48,12 +49,15 @@ public class RegisterController {
             return;
         }
 
-        if (UserStore.userExists(username)) {
+        if (UserService.getInstance().userExists(username)) {
             showWarning("Tài khoản đã tồn tại", "Tên đăng nhập \"" + username + "\" đã được sử dụng.");
             return;
         }
 
-        UserStore.register(username, password, fullName, email);
+        if (!UserService.getInstance().register(username, password, fullName, email)) {
+            showWarning("Lỗi hệ thống", "Không thể tạo tài khoản. Vui lòng kiểm tra kết nối database và thử lại.");
+            return;
+        }
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(ALERT_TITLE);

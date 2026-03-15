@@ -11,7 +11,6 @@ public final class CartStore {
         private final String imageUrl;
         private final double price;
 
-
         public Product(String name, String category, String emoji, String imageUrl, double price) {
             this.name = name;
             this.category = category;
@@ -154,7 +153,6 @@ public final class CartStore {
         }
         return subtotal;
     }
-
 
     public static String buildCartPreview() {
         StringBuilder preview = new StringBuilder();

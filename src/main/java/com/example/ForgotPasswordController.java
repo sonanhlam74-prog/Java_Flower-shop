@@ -1,5 +1,6 @@
 package com.example;
 
+import com.service.UserService;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -42,7 +43,7 @@ public class ForgotPasswordController {
             return;
         }
 
-        if (!UserStore.verifyEmail(username, email)) {
+        if (!UserService.getInstance().verifyEmail(username, email)) {
             lblStatus.setText("Tài khoản hoặc email không đúng.");
             lblStatus.setStyle("-fx-text-fill: #ef4444;");
             return;
@@ -94,7 +95,11 @@ public class ForgotPasswordController {
         }
 
         String username = txtUsername.getText().trim();
-        UserStore.changePassword(username, newPassword);
+        if (!UserService.getInstance().changePassword(username, newPassword)) {
+            lblStatus.setText("Lỗi hệ thống: không thể cập nhật mật khẩu. Kiểm tra kết nối database.");
+            lblStatus.setStyle("-fx-text-fill: #ef4444;");
+            return;
+        }
 
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(ALERT_TITLE);

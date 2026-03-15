@@ -1,5 +1,7 @@
 package com.example;
 
+import com.service.UserService;
+import java.io.File;
 import java.text.NumberFormat;
 import java.util.List;
 import java.util.Locale;
@@ -26,25 +28,30 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 
 public class CrudController {
     private static final String ALERT_TITLE = "Thông báo hệ thống";
     private static final NumberFormat VND = NumberFormat.getInstance(new Locale("vi", "VN"));
 
-    /* ====== Nút thanh bên ====== */
+    // Menu điều hướng
     @FXML private Button btnMenuDashboard;
     @FXML private Button btnMenuProducts;
     @FXML private Button btnMenuStats;
     @FXML private Button btnMenuOrders;
+    @FXML private Button btnReturnShop;
 
-    /* ====== Bảng điều khiển ====== */
+    // ====== Panel chính ====== */
     @FXML private VBox panelDashboard;
     @FXML private VBox panelProducts;
     @FXML private ScrollPane panelStats;
     @FXML private VBox panelOrders;
 
-    /* ====== Bảng tổng quan ====== */
+    // Thống kê tổng quan
     @FXML private Label statTotal;
     @FXML private Label statInStock;
     @FXML private Label statLowStock;
@@ -52,6 +59,8 @@ public class CrudController {
     @FXML private Label statRevenue;
     @FXML private Label statCustomers;
     @FXML private Label lblProfileName;
+    @FXML private ImageView imgCrudAvatar;
+    @FXML private Text txtCrudAvatarInitial;
 
     @FXML private TableView<OrderHistoryStore.Order> recentOrdersTable;
     @FXML private TableColumn<OrderHistoryStore.Order, Integer> colRecentId;
@@ -62,7 +71,7 @@ public class CrudController {
     @FXML private TableColumn<OrderHistoryStore.Order, String> colRecentTier;
     @FXML private TableColumn<OrderHistoryStore.Order, String> colRecentStatus;
 
-    /* ====== Bảng sản phẩm ====== */
+    // Bảng sản phẩm
     @FXML private TableView<Flower> flowerTable;
     @FXML private TableColumn<Flower, Integer> colId;
     @FXML private TableColumn<Flower, String> colName;
@@ -75,7 +84,7 @@ public class CrudController {
     @FXML private TextField txtPrice;
     @FXML private TextField txtStock;
 
-    /* ====== Bảng thống kê ====== */
+    // Bảng thống kê
     @FXML private Label sFlowersSold;
     @FXML private Label sRevenue;
     @FXML private Label sPurchaseRate;
@@ -112,7 +121,7 @@ public class CrudController {
     @FXML private TableColumn<OrderHistoryStore.FlowerStat, Integer> colCdQty;
     @FXML private TableColumn<OrderHistoryStore.FlowerStat, String> colCdTotal;
 
-    /* ====== Bảng đơn hàng ====== */
+    // Bảng tất cả đơn hàng
     @FXML private ComboBox<String> cbOrderStatus;
     @FXML private TableView<OrderHistoryStore.Order> allOrdersTable;
     @FXML private TableColumn<OrderHistoryStore.Order, Integer> colOrdId;
@@ -130,9 +139,6 @@ public class CrudController {
         this.app = app;
     }
 
-    /* ================================================================
-       KHỞI TẠO
-       ================================================================ */
     @FXML
     public void initialize() {
         colId.setCellValueFactory(new PropertyValueFactory<>("id"));
@@ -276,6 +282,16 @@ public class CrudController {
     @FXML public void handleMenuProducts()  { showPanel("products"); }
     @FXML public void handleMenuStats()     { showPanel("stats"); refreshStatistics(); }
     @FXML public void handleMenuOrders()    { showPanel("orders"); refreshOrders(); }
+    @FXML public void handleReturnShop()    { showShopScene(); }
+
+    private void showShopScene() {
+        try {
+            app.showShopScene();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+        }
+    }
+
 
     private void showPanel(String panel) {
         panelDashboard.setVisible("dashboard".equals(panel));
@@ -287,7 +303,7 @@ public class CrudController {
         panelOrders.setVisible("orders".equals(panel));
         panelOrders.setManaged("orders".equals(panel));
 
-        for (Button btn : new Button[]{btnMenuDashboard, btnMenuProducts, btnMenuStats, btnMenuOrders}) {
+        for (Button btn : new Button[]{btnMenuDashboard, btnMenuProducts, btnMenuStats, btnMenuOrders, btnReturnShop}) {
             btn.getStyleClass().remove("menu-item-active");
         }
         switch (panel) {
@@ -295,8 +311,10 @@ public class CrudController {
             case "products"  -> btnMenuProducts.getStyleClass().add("menu-item-active");
             case "stats"     -> btnMenuStats.getStyleClass().add("menu-item-active");
             case "orders"    -> btnMenuOrders.getStyleClass().add("menu-item-active");
+            case "returnShop" -> btnReturnShop.getStyleClass().add("menu-item-active");
         }
     }
+
 
     /* ================================================================
        TỔNG QUAN
@@ -396,7 +414,6 @@ public class CrudController {
                 node.setStyle("-fx-cursor: hand;");
 
                 // Hiệu ứng phóng to khi hover
-                node.setOnMouseEntered(e -> node.setScaleX(1.5));
                 node.setOnMouseEntered(e -> { node.setScaleX(1.5); node.setScaleY(1.5); });
                 node.setOnMouseExited(e -> { node.setScaleX(1.0); node.setScaleY(1.0); });
             }
@@ -508,9 +525,45 @@ public class CrudController {
     }
 
     public void setCurrentUser(String username) {
-        if (lblProfileName != null && username != null && !username.isBlank()) {
-            lblProfileName.setText(UserStore.getFullName(username));
+        if (username == null || username.isBlank()) return;
+        if (lblProfileName != null) {
+            lblProfileName.setText(UserService.getInstance().getFullName(username));
         }
+        loadCrudAvatar(username);
+    }
+
+    private void loadCrudAvatar(String username) {
+        if (imgCrudAvatar == null) return;
+        String path = UserService.getInstance().getAvatarPath(username);
+        if (path != null && !path.isBlank()) {
+            try {
+                File f = new File(path);
+                if (f.exists()) {
+                    Image img = new Image(f.toURI().toString(), 42, 42, false, true);
+                    imgCrudAvatar.setImage(img);
+                    Circle clip = new Circle(21, 21, 21);
+                    imgCrudAvatar.setClip(clip);
+                    imgCrudAvatar.setVisible(true);
+                    imgCrudAvatar.setManaged(true);
+                    if (txtCrudAvatarInitial != null) {
+                        txtCrudAvatarInitial.setVisible(false);
+                        txtCrudAvatarInitial.setManaged(false);
+                    }
+                    return;
+                }
+            } catch (Exception ignored) { }
+        }
+        // Fallback: show initial from full name
+        if (txtCrudAvatarInitial != null) {
+            String fullName = UserService.getInstance().getFullName(username);
+            String initial = fullName.isEmpty() ? "A"
+                    : String.valueOf(fullName.charAt(0)).toUpperCase();
+            txtCrudAvatarInitial.setText(initial);
+            txtCrudAvatarInitial.setVisible(true);
+            txtCrudAvatarInitial.setManaged(true);
+        }
+        imgCrudAvatar.setVisible(false);
+        imgCrudAvatar.setManaged(false);
     }
 
     @FXML
