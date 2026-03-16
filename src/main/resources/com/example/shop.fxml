@@ -37,7 +37,7 @@
             </HBox>
             <Label fx:id="lblInfo" text="Chào mừng bạn!" styleClass="shop-info-bar" />
             <Region HBox.hgrow="ALWAYS" />
-            <Button onAction="#handleOpenAdminLogin" styleClass="shop-admin-btn" text="🔐 Quản trị" />
+            <Button fx:id="btnAdmin" onAction="#handleOpenAdminLogin" styleClass="shop-admin-btn" text="🔐 Quản trị" visible="false" managed="false" />
             <StackPane styleClass="cart-icon-wrap">
                 <children>
                     <Button fx:id="btnCartIcon" onAction="#handleOpenCheckout" styleClass="shop-cart-btn" text="🛒" />

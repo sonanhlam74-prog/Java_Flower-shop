@@ -45,17 +45,29 @@ public final class MembershipStore {
     private MembershipStore() {}
 
     /** Ghi nhận chi tiêu sau khi thanh toán thành công */
-    public static void recordPurchase(double amount) {
+    public static synchronized void recordPurchase(double amount) {
         totalSpent += amount;
     }
 
+    /** Reset về 0 — chỉ dùng trong test để tránh state bleeding. */
+    static synchronized void resetForTesting() {
+        totalSpent = 0;
+    }
+
+    public static synchronized void loadForUser(double spent) {
+        totalSpent = spent;
+    }
+
+    public static synchronized void resetForGuest() {
+        totalSpent = 0;
+    }
     /** Tổng chi tiêu tích lũy */
-    public static double getTotalSpent() {
+    public static synchronized double getTotalSpent() {
         return totalSpent;
     }
 
     /** Hạng hiện tại dựa theo tích lũy */
-    public static Tier getCurrentTier() {
+    public static synchronized Tier getCurrentTier() {
         Tier current = Tier.BRONZE;
         for (Tier t : Tier.values()) {
             if (totalSpent >= t.getThreshold()) {

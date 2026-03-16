@@ -1,7 +1,13 @@
 package com.example;
 
+import java.net.InetAddress;
 import java.net.URL;
+import java.util.List;
 
+import com.Connect.DatabaseSetup;
+import com.repository.GuestSpendingDAO;
+import com.repository.OrderDAO;
+import com.service.UserService;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -13,15 +19,33 @@ public class App extends Application {
     private Stage primaryStage;
 
     /** Tên người dùng đang đăng nhập, null nghĩa là khách */
-    private static String currentUser = null;   
+    private static String currentUser = null;
     public static String getCurrentUser() { return currentUser; }
     public static void setCurrentUser(String user) { currentUser = user; }
     public static boolean isLoggedIn() { return currentUser != null; }
-    public static void logout() { currentUser = null; }
+
+    private static String currentRole = "customer";
+    public static boolean isAdmin() { return "admin".equals(currentRole); }
+    public static void setCurrentRole(String role) { currentRole = role != null ? role : "customer"; }
+
+    public static void logout() { currentUser = null; currentRole = "customer"; }
+
+    /** Địa chỉ IP của máy — dùng làm định danh khách vãng lai trong DB */
+    private static String guestIp = null;
+    public static String getGuestIp() {
+        if (guestIp == null) {
+            try {
+                guestIp = InetAddress.getLocalHost().getHostAddress();
+            } catch (Exception e) {
+                guestIp = "127.0.0.1";
+            }
+        }
+        return guestIp;
+    }
 
     public static String getDisplayName() {
         if (currentUser == null) return "Guest";
-        return UserStore.getFullName(currentUser);
+        return UserService.getInstance().getFullName(currentUser);
     }
 
     /** Hỗ trợ – chuyển tài nguyên CSS thành chuỗi URL dạng external-form. */
@@ -32,6 +56,12 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws Exception {
         primaryStage = stage;
+        DatabaseSetup.initialize();
+        // Khởi tạo rank và lịch sử đơn hàng cho guest theo IP ngay từ đầu
+        double guestSpent = new GuestSpendingDAO().getTotalSpent(getGuestIp());
+        MembershipStore.loadForUser(guestSpent);
+        List<OrderHistoryStore.Order> guestOrders = new OrderDAO().loadByGuestIp(getGuestIp());
+        OrderHistoryStore.loadFromDB(guestOrders);
         setApplicationIcon(primaryStage);
         showSplashScreen();
     }
@@ -167,6 +197,29 @@ public class App extends Application {
         scene.getStylesheets().addAll(css("common.css"), css("crud-page.css"));
         primaryStage.setTitle("Flower Management Dashboard");
         primaryStage.setScene(scene);
+        primaryStage.show();
+    }
+    
+    //loading màn hình chờ của dashboard (CRUD) sau khi đăng nhập thành công
+    public void showLoadingBeforeDashboard(String username) throws Exception {
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("/com/example/SplashScreen.fxml"));
+        Parent root = loader.load();
+
+        SplashController controller = loader.getController();
+        controller.setOnComplete(() -> {
+            try {
+                showCrudScene(username);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+        controller.setUsername(username);
+        controller.setApp(this);
+
+        Scene scene = new Scene(root);
+        scene.getStylesheets().add(css("common.css"));
+        primaryStage.setScene(scene);
+        primaryStage.centerOnScreen();
         primaryStage.show();
     }
 

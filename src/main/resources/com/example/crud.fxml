@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Priority?>
@@ -39,6 +40,7 @@
                 <Button fx:id="btnMenuProducts" text="📦 Sản phẩm" onAction="#handleMenuProducts" styleClass="menu-item" />
                 <Button fx:id="btnMenuStats" text="📈 Thống kê" onAction="#handleMenuStats" styleClass="menu-item" />
                 <Button fx:id="btnMenuOrders" text="🧾 Đơn hàng" onAction="#handleMenuOrders" styleClass="menu-item" />
+                <Button fx:id="btnReturnShop" text="🏪 Quay lại cửa hàng" onAction="#handleReturnShop" styleClass="menu-item" />
                 <Button text="🚪 Đăng xuất" onAction="#handleLogout" styleClass="menu-item" />
 
                 <Region VBox.vgrow="ALWAYS" />
@@ -69,10 +71,11 @@
                                     <Label fx:id="lblProfileName" text="Admin" styleClass="profile-name" />
                                     <Label text="Manager" styleClass="profile-role" />
                                 </VBox>
-                                <HBox alignment="CENTER" prefHeight="42.0" prefWidth="42.0" styleClass="avatar-wrap">
-                                    <Circle radius="18.0" styleClass="avatar-circle" />
-                                    <Text styleClass="avatar-text" text="NA" />
-                                </HBox>
+                                <StackPane prefHeight="42.0" prefWidth="42.0" styleClass="avatar-wrap">
+                                    <Circle radius="21.0" styleClass="avatar-circle" />
+                                    <Text fx:id="txtCrudAvatarInitial" styleClass="avatar-text" text="A" />
+                                    <ImageView fx:id="imgCrudAvatar" fitHeight="42.0" fitWidth="42.0" visible="false" managed="false" />
+                                </StackPane>
                             </HBox>
                         </children>
                     </HBox>

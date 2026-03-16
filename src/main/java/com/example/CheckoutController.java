@@ -1,5 +1,8 @@
 package com.example;
 
+import com.repository.GuestSpendingDAO;
+import com.repository.OrderDAO;
+import com.service.UserService;
 import java.text.NumberFormat;
 import java.util.LinkedHashMap;
 import java.util.Locale;
@@ -226,8 +229,32 @@ public class CheckoutController {
         }
 
         MembershipStore.recordPurchase(total);
-        OrderHistoryStore.recordOrder(CartStore.getCartSnapshot(), subtotal, tax, memberDiscount + couponDiscount, total,
-                txtFullName.getText().trim());
+        // Lưu tích lũy vào DB — đăng nhập thì lưu theo username, khách lưu theo IP
+        if (App.isLoggedIn()) {
+            UserService.getInstance().addToTotalSpent(App.getCurrentUser(), total);
+        } else {
+            new GuestSpendingDAO().addToTotalSpent(App.getGuestIp(), total);
+        }
+
+        String checkoutName = txtFullName.getText().trim();
+        Map<String, Integer> cartSnapshot = CartStore.getCartSnapshot();
+        double finalDiscount = memberDiscount + couponDiscount;
+        String tierName = MembershipStore.getCurrentTier().getDisplayName();
+
+        // Persist đơn hàng vào DB trước, lấy DB-generated order_id
+        int dbOrderId = new OrderDAO().saveOrder(
+            App.isLoggedIn() ? App.getCurrentUser() : null,
+            App.isLoggedIn() ? null : App.getGuestIp(),
+            checkoutName, cartSnapshot,
+            subtotal, tax, finalDiscount, total, tierName
+        );
+
+        // Thêm vào in-memory store với đúng DB order_id (fallback tự tăng nếu DB lỗi)
+        if (dbOrderId > 0) {
+            OrderHistoryStore.recordOrderWithId(dbOrderId, cartSnapshot, subtotal, tax, finalDiscount, total, checkoutName);
+        } else {
+            OrderHistoryStore.recordOrder(cartSnapshot, subtotal, tax, finalDiscount, total, checkoutName);
+        }
         CartStore.clearCartAfterPurchase();
 
         MembershipStore.Tier tier = MembershipStore.getCurrentTier();

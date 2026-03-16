@@ -1,6 +1,5 @@
 package com.example;
 
-import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -8,13 +7,15 @@ import javafx.concurrent.Task;
 
 public class SplashController {
 
-    @FXML
-    private ProgressBar progressBar;
-    
-    @FXML
-    private Label lblStatus;
+    @FXML private ProgressBar progressBar;
+    @FXML private Label lblStatus;
 
     private App mainApp;
+    private Runnable onComplete;
+    private String loginUsername;
+
+    public void setOnComplete(Runnable onComplete) { this.onComplete = onComplete; }
+    public void setUsername(String username) { this.loginUsername = username; }
 
     public void setApp(App app) {
         this.mainApp = app;
@@ -22,29 +23,44 @@ public class SplashController {
     }
 
     private void startInitialization() {
+        boolean isLoginMode = loginUsername != null;
+
         Task<Void> initTask = new Task<Void>() {
             @Override
             protected Void call() throws Exception {
-                // Chuẩn bị UI ban đầu (nhanh)
-                updateMessage("Chuẩn bị giao diện...");
-                updateProgress(0.2, 1.0);
-                Thread.sleep(200); // Giả lập chuẩn bị UI
+                if (isLoginMode) {
+                    updateMessage("Đang xác thực tài khoản...");
+                    updateProgress(0.2, 1.0);
+                    Thread.sleep(2000);
 
-                // Tải shop scene (nhanh)
-                updateMessage("Tải dữ liệu cửa hàng...");
-                updateProgress(0.5, 1.0);
-                Thread.sleep(300);
+                    updateMessage("Đang tải dữ liệu...");
+                    updateProgress(0.5, 1.0);
+                    Thread.sleep(2000);
 
-                // Sau 2-4 giây, hiển thị shop scene với dữ liệu cơ bản
+                    updateMessage("Chuẩn bị Dashboard...");
+                    updateProgress(0.8, 1.0);
+                    Thread.sleep(2000);
+                } else {
+                    updateMessage("Chuẩn bị giao diện...");
+                    updateProgress(0.2, 1.0);
+                    Thread.sleep(2000);
+
+                    updateMessage("Tải dữ liệu cửa hàng...");
+                    updateProgress(0.5, 1.0);
+                    Thread.sleep(2000);
+                }
                 return null;
             }
 
             @Override
             protected void succeeded() {
                 updateProgress(1.0, 1.0);
-                // Hiển thị shop scene ngay (không đợi hết tải)
                 try {
-                    mainApp.showShopScene();
+                    if (onComplete != null) {
+                        onComplete.run();
+                    } else {
+                        mainApp.showShopScene();
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -57,7 +73,6 @@ public class SplashController {
             }
         };
 
-        // Cập nhật progress bar
         progressBar.progressProperty().bind(initTask.progressProperty());
         if (lblStatus != null) {
             lblStatus.textProperty().bind(initTask.messageProperty());
