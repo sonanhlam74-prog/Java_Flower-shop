@@ -89,7 +89,7 @@
         </padding>
         <children>
             <Button onAction="#handleScrollToTet" styleClass="category-nav-btn" text="🌺 Hoa Tết" />
-            <Button onAction="#handleScrollToFuneral" styleClass="category-nav-btn" text=" Hoa Chia Buồn" />
+            <Button onAction="#handleScrollToFuneral" styleClass="category-nav-btn" text="💐 Hoa Chia Buồn" />
             <Button onAction="#handleScrollToCelebrate" styleClass="category-nav-btn" text="🎉 Hoa Chúc Mừng" />
             <Button onAction="#handleScrollToBirthday" styleClass="category-nav-btn" text="🎂 Hoa Sinh Nhật" />
             <Button onAction="#handleScrollToWedding" styleClass="category-nav-btn" text="💒 Hoa Cưới" />
@@ -147,7 +147,7 @@
                             <HBox alignment="CENTER_LEFT" spacing="10.0">
                                 <children>
                                     <ImageView fitHeight="28" fitWidth="28" preserveRatio="true">
-                                        <image><Image url="https://img.icons8.com/emoji/48/-emoji-envelope-dots.png" /></image>
+                                        <image><Image url="https://img.icons8.com/color/48/sakura.png" /></image>
                                     </ImageView>
                                     <Label text="Hoa Tết" styleClass="section-heading" />
                                     <Label text="HOT" styleClass="badge-hot" />
@@ -268,7 +268,7 @@
                             <HBox alignment="CENTER_LEFT" spacing="10.0">
                                 <children>
                                     <ImageView fitHeight="28" fitWidth="28" preserveRatio="true">
-                                        <image><Image url="https://img.icons8.com/emoji/48/candle-emoji.png" /></image> 
+                                        <image><Image url="https://img.icons8.com/color/48/lily.png" /></image>
                                     </ImageView>
                                     <Label text="Hoa Chia Buồn" styleClass="section-heading" />
                                     <Region HBox.hgrow="ALWAYS" />
@@ -281,9 +281,9 @@
                                     <VBox fx:id="cardCucTrang" spacing="0.0" styleClass="flower-card" HBox.hgrow="ALWAYS">
                                         <children>
                                             <StackPane styleClass="flower-thumb funeral-gradient">
-                                                <children>
-                                                    <Label text="🤍" styleClass="flower-emoji" />
-                                                </children>
+                                                    <ImageView fitHeight="48" fitWidth="48" preserveRatio="true">
+                                                        <image><Image url="https://img.icons8.com/color/48/chrysanthemum.png" /></image>
+                                                    </ImageView>
                                             </StackPane>
                                             <VBox spacing="4.0" styleClass="flower-card-body">
                                                 <children>
@@ -306,9 +306,9 @@
                                     <VBox fx:id="cardHueTrang" spacing="0.0" styleClass="flower-card" HBox.hgrow="ALWAYS">
                                         <children>
                                             <StackPane styleClass="flower-thumb funeral-gradient">
-                                                <children>
-                                                    <Label text="⚪" styleClass="flower-emoji" />
-                                                </children>
+                                                    <ImageView fitHeight="48" fitWidth="48" preserveRatio="true">
+                                                        <image><Image url="https://img.icons8.com/color/48/white-flower.png" /></image>
+                                                    </ImageView>
                                             </StackPane>
                                             <VBox spacing="4.0" styleClass="flower-card-body">
                                                 <children>
@@ -331,9 +331,9 @@
                                     <VBox fx:id="cardLyTrang" spacing="0.0" styleClass="flower-card" HBox.hgrow="ALWAYS">
                                         <children>
                                             <StackPane styleClass="flower-thumb funeral-gradient">
-                                                <children>
-                                                    <Label text="🕊" styleClass="flower-emoji" />
-                                                </children>
+                                                    <ImageView fitHeight="48" fitWidth="48" preserveRatio="true">
+                                                        <image><Image url="https://img.icons8.com/color/48/water-lily.png" /></image>
+                                                    </ImageView>
                                             </StackPane>
                                             <VBox spacing="4.0" styleClass="flower-card-body">
                                                 <children>
@@ -356,9 +356,9 @@
                                     <VBox fx:id="cardHongTrang" spacing="0.0" styleClass="flower-card" HBox.hgrow="ALWAYS">
                                         <children>
                                             <StackPane styleClass="flower-thumb funeral-gradient">
-                                                <children>
-                                                    <Label text="🥀" styleClass="flower-emoji" />
-                                                </children>
+                                                    <ImageView fitHeight="48" fitWidth="48" preserveRatio="true">
+                                                        <image><Image url="https://img.icons8.com/color/48/rose.png" /></image>
+                                                    </ImageView>
                                             </StackPane>
                                             <VBox spacing="4.0" styleClass="flower-card-body">
                                                 <children>
@@ -387,7 +387,7 @@
                             <HBox alignment="CENTER_LEFT" spacing="10.0">
                                 <children>
                                     <ImageView fitHeight="28" fitWidth="28" preserveRatio="true">
-                                        <image><Image url="https://img.icons8.com/emoji/48/party-popper.png" /></image> 
+                                        <image><Image url="https://img.icons8.com/color/48/bouquet.png" /></image>
                                     </ImageView>
                                     <Label text="Hoa Chúc Mừng" styleClass="section-heading" />
                                     <Label text="NEW" styleClass="badge-new-section" />
@@ -508,7 +508,7 @@
                             <HBox alignment="CENTER_LEFT" spacing="10.0">
                                 <children>
                                     <ImageView fitHeight="28" fitWidth="28" preserveRatio="true">
-                                        <image><Image url="https://img.icons8.com/color/48/birthday-cake.png" /></image> 
+                                        <image><Image url="https://img.icons8.com/color/48/gift--v1.png" /></image>
                                     </ImageView>
                                     <Label text="Hoa Sinh Nhật" styleClass="section-heading" />
                                     <Label text="NEW" styleClass="badge-new-section" />
@@ -629,7 +629,7 @@
                             <HBox alignment="CENTER_LEFT" spacing="10.0">
                                 <children>
                                     <ImageView fitHeight="28" fitWidth="28" preserveRatio="true">
-                                        <image><Image url="https://img.icons8.com/color/48/wedding-rings.png" /></image> 
+                                        <image><Image url="https://img.icons8.com/color/48/champagne-glass.png" /></image>
                                     </ImageView>
                                     <Label text="Hoa Cưới" styleClass="section-heading" />
                                     <Region HBox.hgrow="ALWAYS" />

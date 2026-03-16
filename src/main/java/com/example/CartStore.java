@@ -44,10 +44,10 @@ public final class CartStore {
         register(new Product("Hoa Lan Hồ Điệp Tết","Hoa tết",       "🌷", photo("lan-ho-diep.jpg"), 450000));
 
         // ── Hoa Chia Buồn ──
-        register(new Product("Hoa Cúc Trắng",       "Hoa Chia buồn", "🤍", photo("hoa-cuc-trang.png"), 190000));
-        register(new Product("Hoa Huệ Trắng",       "Hoa Chia buồn", "⚪", photo("hoa-hue-trang.png"), 210000));
+        register(new Product("Hoa Cúc Trắng",       "Hoa Chia buồn", "🤍", photo("hoa-cuc-trang.jpg"), 190000));
+        register(new Product("Hoa Huệ Trắng",       "Hoa Chia buồn", "⚪", photo("hoa-hue-trang.jpg"), 210000));
         register(new Product("Hoa Ly Trắng",        "Hoa Chia buồn", "🕊", photo("hoa-ly-trang.jpg"), 240000));
-        register(new Product("Hoa Hồng Trắng",      "Hoa Chia buồn", "🥀", photo("hoa-hong-trang.png"), 220000));
+        register(new Product("Hoa Hồng Trắng",      "Hoa Chia buồn", "🥀", photo("hoa-hong-trang.jpg"), 220000));
 
         // ── Hoa Chúc Mừng ──
         register(new Product("Hoa Hướng Dương",      "Hoa Chúc Mừng", "🌻", photo("huong-duong.jpg"), 230000));
@@ -59,10 +59,10 @@ public final class CartStore {
         register(new Product("Hoa Hồng Phấn",       "Hoa Sinh Nhật", "🌷", photo("hoa-hong-phan.jpg"), 275000));
         register(new Product("Hoa Đồng Tiền",       "Hoa Sinh Nhật", "🌼", photo("hoa-dong-tien.jpg"), 195000));
         register(new Product("Hoa Baby Trắng",      "Hoa Sinh Nhật", "🤍", photo("hoa-baby.jpg"), 180000));
-        register(new Product("Hoa Lan Mokara",       "Hoa Sinh Nhật", "💜", photo("hoa-moraka.jpg"), 350000));
+        register(new Product("Hoa Lan Mokara",       "Hoa Sinh Nhật", "💜", photo("hoa-mokara.jpg"), 350000));
 
         // ── Hoa Cưới ──
-        register(new Product("Hoa Hồng Pastel",     "Hoa Cưới",      "💐", photo("bo-hong-pastel.jpg"), 380000));
+        register(new Product("Hoa Hồng Pastel",     "Hoa Cưới",      "💐", photo("hong-pastel.jpg"), 380000));
         register(new Product("Hoa Cát Tường",       "Hoa Cưới",      "🌿", photo("hoa-cat-tuong.jpg"), 290000));
         register(new Product("Hoa Mẫu Đơn",        "Hoa Cưới",      "🌺", photo("hoa-mau-don.jpg"), 420000));
         register(new Product("Hoa Phi Yến",         "Hoa Cưới",      "💠", photo("hoa-phi-yen.jpg"), 340000));
