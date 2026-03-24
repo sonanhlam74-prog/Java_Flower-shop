@@ -152,7 +152,7 @@
                                     <Label text="Hoa Tết" styleClass="section-heading" />
                                     <Label text="HOT" styleClass="badge-hot" />
                                     <Region HBox.hgrow="ALWAYS" />
-                                    <Button onAction="#handleViewMoreTet" styleClass="shop-more-btn" text="Xem thêm →" />
+                                    <Button fx:id="btnMoreTet" onAction="#handleViewMoreTet" styleClass="shop-more-btn" text="Xem thêm ↓" />
                                 </children>
                             </HBox>
                             <HBox spacing="16.0">
@@ -259,6 +259,65 @@
                                     </VBox>
                                 </children>
                             </HBox>
+                            
+                            <!-- HBox mở rộng cho Hoa Tết -->
+                            <HBox fx:id="rowMoreTet" spacing="16.0" visible="false" managed="false">
+                                <children>
+                                    <!-- Nụ Tầm Xuân -->
+                                    <VBox fx:id="cardNuTamXuan" spacing="0.0" styleClass="flower-card" HBox.hgrow="ALWAYS">
+                                        <children>
+                                            <StackPane styleClass="flower-thumb tet-gradient">
+                                                <children>
+                                                    <Label text="🌾" styleClass="flower-emoji" />
+                                                </children>
+                                            </StackPane>
+                                            <VBox spacing="4.0" styleClass="flower-card-body">
+                                                <children>
+                                                    <Label text="Nụ Tầm Xuân" styleClass="flower-name" />
+                                                    <Label text="Tươi mới sắc xuân" styleClass="flower-desc" wrapText="true" />
+                                                    <Region VBox.vgrow="ALWAYS" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="6.0" styleClass="card-bottom-row">
+                                                        <children>
+                                                            <Label text="180.000₫" styleClass="flower-price" />
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <Button text="🛒 Add" onAction="#handleAddToCartBtn" userData="Nụ Tầm Xuân" styleClass="card-add-btn" />
+                                                        </children>
+                                                    </HBox>
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    </VBox>
+
+                                    <!-- Lan Trần Mộng -->
+                                    <VBox fx:id="cardLanTranMong" spacing="0.0" styleClass="flower-card" HBox.hgrow="ALWAYS">
+                                        <children>
+                                            <StackPane styleClass="flower-thumb tet-gradient">
+                                                <children>
+                                                    <Label text="🎍" styleClass="flower-emoji" />
+                                                </children>
+                                            </StackPane>
+                                            <VBox spacing="4.0" styleClass="flower-card-body">
+                                                <children>
+                                                    <Label text="Lan Trần Mộng" styleClass="flower-name" />
+                                                    <Label text="Cao quý, thanh tao" styleClass="flower-desc" wrapText="true" />
+                                                    <Region VBox.vgrow="ALWAYS" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="6.0" styleClass="card-bottom-row">
+                                                        <children>
+                                                            <Label text="650.000₫" styleClass="flower-price" />
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <Button text="🛒 Add" onAction="#handleAddToCartBtn" userData="Lan Trần Mộng" styleClass="card-add-btn" />
+                                                        </children>
+                                                    </HBox>
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    </VBox>
+                                    
+                                    <!-- Filler (2 cột trống để cân lưới 4 cột) -->
+                                    <VBox styleClass="flower-card" HBox.hgrow="ALWAYS" opacity="0.0" mouseTransparent="true" />
+                                    <VBox styleClass="flower-card" HBox.hgrow="ALWAYS" opacity="0.0" mouseTransparent="true" />
+                                </children>
+                            </HBox>
                         </children>
                     </VBox>
 
@@ -272,7 +331,7 @@
                                     </ImageView>
                                     <Label text="Hoa Chia Buồn" styleClass="section-heading" />
                                     <Region HBox.hgrow="ALWAYS" />
-                                    <Button onAction="#handleViewMoreFuneral" styleClass="shop-more-btn" text="Xem thêm →" />
+                                    <Button fx:id="btnMoreFuneral" onAction="#handleViewMoreFuneral" styleClass="shop-more-btn" text="Xem thêm ↓" />
                                 </children>
                             </HBox>
                             <HBox spacing="16.0">
@@ -378,6 +437,65 @@
                                     </VBox>
                                 </children>
                             </HBox>
+                            
+                            <!-- HBox mở rộng cho Hoa Chia Buồn -->
+                            <HBox fx:id="rowMoreFuneral" spacing="16.0" visible="false" managed="false">
+                                <children>
+                                    <!-- Lan Hồ Điệp Trắng -->
+                                    <VBox fx:id="cardLanHoDiepTrang" spacing="0.0" styleClass="flower-card" HBox.hgrow="ALWAYS">
+                                        <children>
+                                            <StackPane styleClass="flower-thumb funeral-gradient">
+                                                <children>
+                                                    <Label text="🕸" styleClass="flower-emoji" />
+                                                </children>
+                                            </StackPane>
+                                            <VBox spacing="4.0" styleClass="flower-card-body">
+                                                <children>
+                                                    <Label text="Lan Hồ Điệp Trắng" styleClass="flower-name" />
+                                                    <Label text="Cầu nguyện bình an" styleClass="flower-desc" wrapText="true" />
+                                                    <Region VBox.vgrow="ALWAYS" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="6.0" styleClass="card-bottom-row">
+                                                        <children>
+                                                            <Label text="420.000₫" styleClass="flower-price" />
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <Button text="🛒 Add" onAction="#handleAddToCartBtn" userData="Lan Hồ Điệp Trắng" styleClass="card-add-btn" />
+                                                        </children>
+                                                    </HBox>
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    </VBox>
+
+                                    <!-- Cúc Vàng Tiễn Biệt -->
+                                    <VBox fx:id="cardCucVangTienBiet" spacing="0.0" styleClass="flower-card" HBox.hgrow="ALWAYS">
+                                        <children>
+                                            <StackPane styleClass="flower-thumb funeral-gradient">
+                                                <children>
+                                                    <Label text="🎗" styleClass="flower-emoji" />
+                                                </children>
+                                            </StackPane>
+                                            <VBox spacing="4.0" styleClass="flower-card-body">
+                                                <children>
+                                                    <Label text="Cúc Vàng Tiễn Biệt" styleClass="flower-name" />
+                                                    <Label text="Lòng thành kính sâu sắc" styleClass="flower-desc" wrapText="true" />
+                                                    <Region VBox.vgrow="ALWAYS" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="6.0" styleClass="card-bottom-row">
+                                                        <children>
+                                                            <Label text="150.000₫" styleClass="flower-price" />
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <Button text="🛒 Add" onAction="#handleAddToCartBtn" userData="Cúc Vàng Tiễn Biệt" styleClass="card-add-btn" />
+                                                        </children>
+                                                    </HBox>
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    </VBox>
+                                    
+                                    <!-- Filler (2 cột trống để cân lưới 4 cột) -->
+                                    <VBox styleClass="flower-card" HBox.hgrow="ALWAYS" opacity="0.0" mouseTransparent="true" />
+                                    <VBox styleClass="flower-card" HBox.hgrow="ALWAYS" opacity="0.0" mouseTransparent="true" />
+                                </children>
+                            </HBox>
                         </children>
                     </VBox>
 
@@ -392,7 +510,7 @@
                                     <Label text="Hoa Chúc Mừng" styleClass="section-heading" />
                                     <Label text="NEW" styleClass="badge-new-section" />
                                     <Region HBox.hgrow="ALWAYS" />
-                                    <Button onAction="#handleViewMoreCelebrate" styleClass="shop-more-btn" text="Xem thêm →" />
+                                    <Button fx:id="btnMoreCelebrate" onAction="#handleViewMoreCelebrate" styleClass="shop-more-btn" text="Xem thêm ↓" />
                                 </children>
                             </HBox>
                             <HBox spacing="16.0">
@@ -499,6 +617,62 @@
                                     </VBox>
                                 </children>
                             </HBox>
+                            <HBox fx:id="rowMoreCelebrate" spacing="16.0" visible="false" managed="false">
+                                <children>
+                                    <!-- Lan Vũ Nữ Vàng -->
+                                    <VBox fx:id="cardLanVuNu" spacing="0.0" styleClass="flower-card" HBox.hgrow="ALWAYS">
+                                        <children>
+                                            <StackPane styleClass="flower-thumb celebrate-gradient">
+                                                <children>
+                                                    <Label text="✨" styleClass="flower-emoji" />
+                                                </children>
+                                            </StackPane>
+                                            <VBox spacing="4.0" styleClass="flower-card-body">
+                                                <children>
+                                                    <Label text="Lan Vũ Nữ Vàng" styleClass="flower-name" />
+                                                    <Label text="Lấp lánh, quý phái" styleClass="flower-desc" wrapText="true" />
+                                                    <Region VBox.vgrow="ALWAYS" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="6.0" styleClass="card-bottom-row">
+                                                        <children>
+                                                            <Label text="350.000₫" styleClass="flower-price" />
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <Button text="🛒 Add" onAction="#handleAddToCartBtn" userData="Lan Vũ Nữ Vàng" styleClass="card-add-btn" />
+                                                        </children>
+                                                    </HBox>
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    </VBox>
+
+                                    <!-- Hoa Trinh Nữ -->
+                                    <VBox fx:id="cardHoaTrinhNu" spacing="0.0" styleClass="flower-card" HBox.hgrow="ALWAYS">
+                                        <children>
+                                            <StackPane styleClass="flower-thumb celebrate-gradient">
+                                                <children>
+                                                    <Label text="🔮" styleClass="flower-emoji" />
+                                                </children>
+                                            </StackPane>
+                                            <VBox spacing="4.0" styleClass="flower-card-body">
+                                                <children>
+                                                    <Label text="Hoa Trinh Nữ" styleClass="flower-name" />
+                                                    <Label text="E ấp, thuần khiết" styleClass="flower-desc" wrapText="true" />
+                                                    <Region VBox.vgrow="ALWAYS" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="6.0" styleClass="card-bottom-row">
+                                                        <children>
+                                                            <Label text="280.000₫" styleClass="flower-price" />
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <Button text="🛒 Add" onAction="#handleAddToCartBtn" userData="Hoa Trinh Nữ" styleClass="card-add-btn" />
+                                                        </children>
+                                                    </HBox>
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    </VBox>
+                                    <!-- Filler (2 cột trống để cân lưới 4 cột) -->
+                                    <VBox styleClass="flower-card" HBox.hgrow="ALWAYS" opacity="0.0" mouseTransparent="true" />
+                                    <VBox styleClass="flower-card" HBox.hgrow="ALWAYS" opacity="0.0" mouseTransparent="true" />
+                                </children>
+                            </HBox>
                         </children>
                     </VBox>
 
@@ -513,7 +687,7 @@
                                     <Label text="Hoa Sinh Nhật" styleClass="section-heading" />
                                     <Label text="NEW" styleClass="badge-new-section" />
                                     <Region HBox.hgrow="ALWAYS" />
-                                    <Button onAction="#handleViewMoreBirthday" styleClass="shop-more-btn" text="Xem thêm →" />
+                                    <Button fx:id="btnMoreBirthday" onAction="#handleViewMoreBirthday" styleClass="shop-more-btn" text="Xem thêm ↓" />
                                 </children>
                             </HBox>
                             <HBox spacing="16.0">
@@ -620,6 +794,62 @@
                                     </VBox>
                                 </children>
                             </HBox>
+                            <HBox fx:id="rowMoreBirthday" spacing="16.0" visible="false" managed="false">
+                                <children>
+                                    <!-- Hồng Bỉ Ngạn -->
+                                    <VBox fx:id="cardHongBiNgan" spacing="0.0" styleClass="flower-card" HBox.hgrow="ALWAYS">
+                                        <children>
+                                            <StackPane styleClass="flower-thumb birthday-gradient">
+                                                <children>
+                                                    <Label text="🌺" styleClass="flower-emoji" />
+                                                </children>
+                                            </StackPane>
+                                            <VBox spacing="4.0" styleClass="flower-card-body">
+                                                <children>
+                                                    <Label text="Hồng Bỉ Ngạn" styleClass="flower-name" />
+                                                    <Label text="Huyền bí, ấn tượng" styleClass="flower-desc" wrapText="true" />
+                                                    <Region VBox.vgrow="ALWAYS" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="6.0" styleClass="card-bottom-row">
+                                                        <children>
+                                                            <Label text="400.000₫" styleClass="flower-price" />
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <Button text="🛒 Add" onAction="#handleAddToCartBtn" userData="Hồng Bỉ Ngạn" styleClass="card-add-btn" />
+                                                        </children>
+                                                    </HBox>
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    </VBox>
+
+                                    <!-- Baby Đỏ Tươi -->
+                                    <VBox fx:id="cardBabyDoTuoi" spacing="0.0" styleClass="flower-card" HBox.hgrow="ALWAYS">
+                                        <children>
+                                            <StackPane styleClass="flower-thumb birthday-gradient">
+                                                <children>
+                                                    <Label text="❤️" styleClass="flower-emoji" />
+                                                </children>
+                                            </StackPane>
+                                            <VBox spacing="4.0" styleClass="flower-card-body">
+                                                <children>
+                                                    <Label text="Baby Đỏ Tươi" styleClass="flower-name" />
+                                                    <Label text="Nồng cháy, đáng yêu" styleClass="flower-desc" wrapText="true" />
+                                                    <Region VBox.vgrow="ALWAYS" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="6.0" styleClass="card-bottom-row">
+                                                        <children>
+                                                            <Label text="200.000₫" styleClass="flower-price" />
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <Button text="🛒 Add" onAction="#handleAddToCartBtn" userData="Baby Đỏ Tươi" styleClass="card-add-btn" />
+                                                        </children>
+                                                    </HBox>
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    </VBox>
+                                    <!-- Filler (2 cột trống để cân lưới 4 cột) -->
+                                    <VBox styleClass="flower-card" HBox.hgrow="ALWAYS" opacity="0.0" mouseTransparent="true" />
+                                    <VBox styleClass="flower-card" HBox.hgrow="ALWAYS" opacity="0.0" mouseTransparent="true" />
+                                </children>
+                            </HBox>
                         </children>
                     </VBox>
 
@@ -633,7 +863,7 @@
                                     </ImageView>
                                     <Label text="Hoa Cưới" styleClass="section-heading" />
                                     <Region HBox.hgrow="ALWAYS" />
-                                    <Button onAction="#handleViewMoreWedding" styleClass="shop-more-btn" text="Xem thêm →" />
+                                    <Button fx:id="btnMoreWedding" onAction="#handleViewMoreWedding" styleClass="shop-more-btn" text="Xem thêm ↓" />
                                 </children>
                             </HBox>
                             <HBox spacing="16.0">
@@ -738,6 +968,62 @@
                                             </VBox>
                                         </children>
                                     </VBox>
+                                </children>
+                            </HBox>
+                            <HBox fx:id="rowMoreWedding" spacing="16.0" visible="false" managed="false">
+                                <children>
+                                    <!-- Tulip Trắng Sứ -->
+                                    <VBox fx:id="cardTulipTrang" spacing="0.0" styleClass="flower-card" HBox.hgrow="ALWAYS">
+                                        <children>
+                                            <StackPane styleClass="flower-thumb wedding-gradient">
+                                                <children>
+                                                    <Label text="🥛" styleClass="flower-emoji" />
+                                                </children>
+                                            </StackPane>
+                                            <VBox spacing="4.0" styleClass="flower-card-body">
+                                                <children>
+                                                    <Label text="Tulip Trắng Sứ" styleClass="flower-name" />
+                                                    <Label text="Kiêu sa, thanh khiết" styleClass="flower-desc" wrapText="true" />
+                                                    <Region VBox.vgrow="ALWAYS" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="6.0" styleClass="card-bottom-row">
+                                                        <children>
+                                                            <Label text="450.000₫" styleClass="flower-price" />
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <Button text="🛒 Add" onAction="#handleAddToCartBtn" userData="Tulip Trắng Sứ" styleClass="card-add-btn" />
+                                                        </children>
+                                                    </HBox>
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    </VBox>
+
+                                    <!-- Cẩm Tú Cầu Cưới -->
+                                    <VBox fx:id="cardCamTuCauCuoi" spacing="0.0" styleClass="flower-card" HBox.hgrow="ALWAYS">
+                                        <children>
+                                            <StackPane styleClass="flower-thumb wedding-gradient">
+                                                <children>
+                                                    <Label text="🎐" styleClass="flower-emoji" />
+                                                </children>
+                                            </StackPane>
+                                            <VBox spacing="4.0" styleClass="flower-card-body">
+                                                <children>
+                                                    <Label text="Cẩm Tú Cầu Cưới" styleClass="flower-name" />
+                                                    <Label text="Viên mãn, hạnh phúc" styleClass="flower-desc" wrapText="true" />
+                                                    <Region VBox.vgrow="ALWAYS" />
+                                                    <HBox alignment="CENTER_LEFT" spacing="6.0" styleClass="card-bottom-row">
+                                                        <children>
+                                                            <Label text="320.000₫" styleClass="flower-price" />
+                                                            <Region HBox.hgrow="ALWAYS" />
+                                                            <Button text="🛒 Add" onAction="#handleAddToCartBtn" userData="Cẩm Tú Cầu Cưới" styleClass="card-add-btn" />
+                                                        </children>
+                                                    </HBox>
+                                                </children>
+                                            </VBox>
+                                        </children>
+                                    </VBox>
+                                    <!-- Filler (2 cột trống để cân lưới 4 cột) -->
+                                    <VBox styleClass="flower-card" HBox.hgrow="ALWAYS" opacity="0.0" mouseTransparent="true" />
+                                    <VBox styleClass="flower-card" HBox.hgrow="ALWAYS" opacity="0.0" mouseTransparent="true" />
                                 </children>
                             </HBox>
                         </children>

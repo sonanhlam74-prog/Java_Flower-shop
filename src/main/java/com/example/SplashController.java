@@ -31,23 +31,23 @@ public class SplashController {
                 if (isLoginMode) {
                     updateMessage("Đang xác thực tài khoản...");
                     updateProgress(0.2, 1.0);
-                    Thread.sleep(2000);
+                    Thread.sleep(500);
 
                     updateMessage("Đang tải dữ liệu...");
                     updateProgress(0.5, 1.0);
-                    Thread.sleep(2000);
+                    Thread.sleep(500);
 
                     updateMessage("Chuẩn bị Dashboard...");
                     updateProgress(0.8, 1.0);
-                    Thread.sleep(2000);
+                    Thread.sleep(500);
                 } else {
                     updateMessage("Chuẩn bị giao diện...");
                     updateProgress(0.2, 1.0);
-                    Thread.sleep(2000);
+                    Thread.sleep(500);
 
                     updateMessage("Tải dữ liệu cửa hàng...");
                     updateProgress(0.5, 1.0);
-                    Thread.sleep(2000);
+                    Thread.sleep(500);
                 }
                 return null;
             }
@@ -55,15 +55,17 @@ public class SplashController {
             @Override
             protected void succeeded() {
                 updateProgress(1.0, 1.0);
-                try {
-                    if (onComplete != null) {
-                        onComplete.run();
-                    } else {
-                        mainApp.showShopScene();
+                javafx.application.Platform.runLater(() -> {
+                    try {
+                        if (onComplete != null) {
+                            onComplete.run();
+                        } else {
+                            mainApp.showShopScene();
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+                });
             }
 
             @Override

@@ -93,13 +93,38 @@ public class ShopController {
     @FXML
     private VBox sectionTet;
     @FXML
+    private HBox rowMoreTet;
+    @FXML
+    private Button btnMoreTet;
+    
+    @FXML
     private VBox sectionFuneral;
+    @FXML
+    private HBox rowMoreFuneral;
+    @FXML
+    private Button btnMoreFuneral;
+    
     @FXML
     private VBox sectionCelebrate;
     @FXML
+    private HBox rowMoreCelebrate;
+    @FXML
+    private Button btnMoreCelebrate;
+    
+    @FXML
     private VBox sectionBirthday;
     @FXML
+    private HBox rowMoreBirthday;
+    @FXML
+    private Button btnMoreBirthday;
+    
+    @FXML
     private VBox sectionWedding;
+    @FXML
+    private HBox rowMoreWedding;
+    @FXML
+    private Button btnMoreWedding;
+    
     @FXML
     private VBox cardMaiVang;
     @FXML
@@ -109,6 +134,11 @@ public class ShopController {
     @FXML
     private VBox cardLanTet;
     @FXML
+    private VBox cardNuTamXuan;
+    @FXML
+    private VBox cardLanTranMong;
+    
+    @FXML
     private VBox cardCucTrang;
     @FXML
     private VBox cardHueTrang;
@@ -116,6 +146,11 @@ public class ShopController {
     private VBox cardLyTrang;
     @FXML
     private VBox cardHongTrang;
+    @FXML
+    private VBox cardLanHoDiepTrang;
+    @FXML
+    private VBox cardCucVangTienBiet;
+    
     @FXML
     private VBox cardHuongDuong;
     @FXML
@@ -125,6 +160,11 @@ public class ShopController {
     @FXML
     private VBox cardCamChuong;
     @FXML
+    private VBox cardLanVuNu;
+    @FXML
+    private VBox cardHoaTrinhNu;
+    
+    @FXML
     private VBox cardHongPhan;
     @FXML
     private VBox cardDongTien;
@@ -133,6 +173,11 @@ public class ShopController {
     @FXML
     private VBox cardLanMokara;
     @FXML
+    private VBox cardHongBiNgan;
+    @FXML
+    private VBox cardBabyDoTuoi;
+    
+    @FXML
     private VBox cardHongPastel;
     @FXML
     private VBox cardCatTuong;
@@ -140,6 +185,10 @@ public class ShopController {
     private VBox cardMauDon;
     @FXML
     private VBox cardPhiYen;
+    @FXML
+    private VBox cardTulipTrang;
+    @FXML
+    private VBox cardCamTuCauCuoi;
 
     private App app;
     private final Map<String, VBox> flowerCards = new LinkedHashMap<>();
@@ -311,29 +360,51 @@ public class ShopController {
     @FXML
     public void handleScrollToWedding() { scrollToSection(sectionWedding); }
 
+    private void toggleRowVisibility(HBox row, Button btnMore) {
+        if (row == null) return;
+        boolean visible = !row.isVisible();
+        row.setVisible(visible);
+        row.setManaged(visible);
+        if (visible) {
+            btnMore.setText("Thu gọn ↑");
+        } else {
+            btnMore.setText("Xem thêm ↓");
+        }
+    }
+
     @FXML
     public void handleViewMoreTet() {
-        showCategoryDetails("Hoa tết");
+        if (rowMoreTet != null && btnMoreTet != null) {
+            toggleRowVisibility(rowMoreTet, btnMoreTet);
+        }
     }
 
     @FXML
     public void handleViewMoreFuneral() {
-        showCategoryDetails("Hoa Chia buồn");
+        if (rowMoreFuneral != null && btnMoreFuneral != null) {
+            toggleRowVisibility(rowMoreFuneral, btnMoreFuneral);
+        }
     }
 
     @FXML
     public void handleViewMoreCelebrate() {
-        showCategoryDetails("Hoa Chúc Mừng");
+        if (rowMoreCelebrate != null && btnMoreCelebrate != null) {
+            toggleRowVisibility(rowMoreCelebrate, btnMoreCelebrate);
+        }
     }
 
     @FXML
     public void handleViewMoreBirthday() {
-        showCategoryDetails("Hoa Sinh Nhật");
+        if (rowMoreBirthday != null && btnMoreBirthday != null) {
+            toggleRowVisibility(rowMoreBirthday, btnMoreBirthday);
+        }
     }
 
     @FXML
     public void handleViewMoreWedding() {
-        showCategoryDetails("Hoa Cưới");
+        if (rowMoreWedding != null && btnMoreWedding != null) {
+            toggleRowVisibility(rowMoreWedding, btnMoreWedding);
+        }
     }
 
     @FXML
@@ -364,22 +435,36 @@ public class ShopController {
         flowerCards.put("hoa đào nhật tân", cardDao);
         flowerCards.put("hoa cúc mâm xôi", cardCucMamXoi);
         flowerCards.put("hoa lan hồ điệp tết", cardLanTet);
+        flowerCards.put("nụ tầm xuân", cardNuTamXuan);
+        flowerCards.put("lan trần mộng", cardLanTranMong);
+        
         flowerCards.put("hoa cúc trắng", cardCucTrang);
         flowerCards.put("hoa huệ trắng", cardHueTrang);
         flowerCards.put("hoa ly trắng", cardLyTrang);
         flowerCards.put("hoa hồng trắng", cardHongTrang);
+        flowerCards.put("lan hồ điệp trắng", cardLanHoDiepTrang);
+        flowerCards.put("cúc vàng tiễn biệt", cardCucVangTienBiet);
+        
         flowerCards.put("hoa hướng dương", cardHuongDuong);
         flowerCards.put("hoa hồng đỏ", cardHongDo);
         flowerCards.put("hoa tulip", cardTulip);
         flowerCards.put("hoa cẩm chướng", cardCamChuong);
+        flowerCards.put("lan vũ nữ vàng", cardLanVuNu);
+        flowerCards.put("hoa trinh nữ", cardHoaTrinhNu);
+        
         flowerCards.put("hoa hồng phấn", cardHongPhan);
         flowerCards.put("hoa đồng tiền", cardDongTien);
         flowerCards.put("hoa baby trắng", cardBabyTrang);
         flowerCards.put("hoa lan mokara", cardLanMokara);
+        flowerCards.put("hồng bỉ ngạn", cardHongBiNgan);
+        flowerCards.put("baby đỏ tươi", cardBabyDoTuoi);
+        
         flowerCards.put("hoa hồng pastel", cardHongPastel);
         flowerCards.put("hoa cát tường", cardCatTuong);
         flowerCards.put("hoa mẫu đơn", cardMauDon);
         flowerCards.put("hoa phi yến", cardPhiYen);
+        flowerCards.put("tulip trắng sứ", cardTulipTrang);
+        flowerCards.put("cẩm tú cầu cưới", cardCamTuCauCuoi);
         installFlowerTooltips();
     }
 
@@ -391,6 +476,8 @@ public class ShopController {
         for (Map.Entry<String, VBox> entry : flowerCards.entrySet()) {
             String name = entry.getKey();
             VBox card = entry.getValue();
+            if (card == null) continue;
+            
             CartStore.Product product = CartStore.getProduct(name);
             if (product == null || card.getChildren().isEmpty()) continue;
             if (!(card.getChildren().get(0) instanceof StackPane thumb)) continue;
@@ -456,6 +543,8 @@ public class ShopController {
         for (Map.Entry<String, VBox> entry : flowerCards.entrySet()) {
             String name = entry.getKey();
             VBox card = entry.getValue();
+            if (card == null) continue;
+
             Flower flower = InventoryStore.findFlowerByName(name);
             if (flower == null) continue;
 
@@ -478,8 +567,10 @@ public class ShopController {
     private void showAllSections() {
         setSectionVisible(true, true, true, true, true);
         for (VBox card : flowerCards.values()) {
-            card.setVisible(true);
-            card.setManaged(true);
+            if (card != null) {
+                card.setVisible(true);
+                card.setManaged(true);
+            }
         }
     }
 
@@ -517,6 +608,9 @@ public class ShopController {
 
         boolean found = false;
         for (Map.Entry<String, VBox> entry : flowerCards.entrySet()) {
+            VBox card = entry.getValue();
+            if (card == null) continue;
+
             String name = entry.getKey();
             CartStore.Product product = CartStore.getProduct(name);
             double price = product != null ? product.getPrice() : 0;

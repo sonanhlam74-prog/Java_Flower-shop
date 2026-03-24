@@ -77,25 +77,39 @@ public final class InventoryStore {
         addSeed(++id, "Hoa Cúc Mâm Xôi",     "Hoa tết",         260000, 24);
         addSeed(++id, "Hoa Lan Hồ Điệp Tết", "Hoa tết",         450000, 16);
         addSeed(++id, "Hoa Trạng Nguyên",     "Hoa tết",         240000, 26);
+        addSeed(++id, "Nụ Tầm Xuân",          "Hoa tết",         180000, 40);
+        addSeed(++id, "Lan Trần Mộng",        "Hoa tết",         650000, 10);
+        
         addSeed(++id, "Hoa Cúc Trắng",        "Hoa Chia buồn",   190000, 25);
         addSeed(++id, "Hoa Huệ Trắng",        "Hoa Chia buồn",   210000, 22);
         addSeed(++id, "Hoa Ly Trắng",         "Hoa Chia buồn",   240000, 18);
         addSeed(++id, "Hoa Hồng Trắng",       "Hoa Chia buồn",   220000, 20);
+        addSeed(++id, "Lan Hồ Điệp Trắng",    "Hoa Chia buồn",   420000, 15);
+        addSeed(++id, "Cúc Vàng Tiễn Biệt",   "Hoa Chia buồn",   150000, 30);
+        
         addSeed(++id, "Hoa Hướng Dương",      "Hoa Chúc Mừng",   230000, 26);
         addSeed(++id, "Hoa Hồng Đỏ",          "Hoa Chúc Mừng",   250000, 32);
         addSeed(++id, "Hoa Tulip",             "Hoa Chúc Mừng",   310000, 15);
         addSeed(++id, "Hoa Cẩm Chướng",       "Hoa Chúc Mừng",   205000, 27);
         addSeed(++id, "Hoa Sen Hồng",         "Hoa Chúc Mừng",   265000, 21);
+        addSeed(++id, "Hoa Trinh Nữ",         "Hoa Chúc Mừng",   280000, 20);
+        addSeed(++id, "Lan Vũ Nữ Vàng",       "Hoa Chúc Mừng",   350000, 18);
+        
         addSeed(++id, "Hoa Hồng Phấn",        "Hoa Sinh Nhật",   275000, 20);
         addSeed(++id, "Hoa Đồng Tiền",        "Hoa Sinh Nhật",   195000, 30);
         addSeed(++id, "Hoa Baby Trắng",       "Hoa Sinh Nhật",   180000, 35);
         addSeed(++id, "Hoa Lan Mokara",       "Hoa Sinh Nhật",   350000, 18);
         addSeed(++id, "Hoa Cẩm Tú Cầu",       "Hoa Sinh Nhật",   295000, 19);
+        addSeed(++id, "Hồng Bỉ Ngạn",         "Hoa Sinh Nhật",   400000, 12);
+        addSeed(++id, "Baby Đỏ Tươi",         "Hoa Sinh Nhật",   200000, 25);
+        
         addSeed(++id, "Hoa Hồng Pastel",      "Hoa Cưới",        380000, 14);
         addSeed(++id, "Hoa Cát Tường",        "Hoa Cưới",        290000, 22);
         addSeed(++id, "Hoa Mẫu Đơn",          "Hoa Cưới",        420000, 12);
         addSeed(++id, "Hoa Phi Yến",           "Hoa Cưới",        340000, 16);
         addSeed(++id, "Hoa Lan Trắng Cưới",   "Hoa Cưới",        360000, 13);
+        addSeed(++id, "Tulip Trắng Sứ",       "Hoa Cưới",        450000, 15);
+        addSeed(++id, "Cẩm Tú Cầu Cưới",      "Hoa Cưới",        320000, 20);
         nextId = id + 1;
         System.out.println("[InventoryStore] Dùng dữ liệu seed in-memory (" + ITEMS.size() + " sản phẩm).");
     }
