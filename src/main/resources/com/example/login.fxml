@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.StackPane?>
 
 <VBox alignment="CENTER" prefHeight="520.0" prefWidth="580.0" spacing="0.0"
     styleClass="auth-root"
@@ -35,7 +36,15 @@
                 <TextField fx:id="txtUsername" promptText="Nhập tài khoản" styleClass="auth-input" />
 
                 <Label text="Mật khẩu" styleClass="field-label" />
-                <PasswordField fx:id="txtPassword" onAction="#handleLogin" promptText="Nhập mật khẩu" styleClass="auth-input" />
+                <StackPane alignment="CENTER_RIGHT">
+                    <PasswordField fx:id="txtPassword" onAction="#handleLogin" promptText="Nhập mật khẩu" styleClass="auth-input" />
+                    <TextField fx:id="txtPasswordVisible" onAction="#handleLogin" promptText="Nhập mật khẩu" styleClass="auth-input" />
+                    <Button fx:id="btnTogglePassword" onAction="#handleTogglePassword" text="👁" style="-fx-background-color: transparent; -fx-cursor: hand; -fx-font-size: 16px;">
+                        <StackPane.margin>
+                            <Insets right="8.0" />
+                        </StackPane.margin>
+                    </Button>
+                </StackPane>
 
                 <HBox alignment="CENTER_RIGHT">
                     <children>

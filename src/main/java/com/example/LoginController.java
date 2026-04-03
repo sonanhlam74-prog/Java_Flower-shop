@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Button;
 
 public class LoginController {
     private static final String ALERT_TITLE = "Thông báo hệ thống";
@@ -15,6 +16,29 @@ public class LoginController {
     private TextField txtUsername;
     @FXML
     private PasswordField txtPassword;
+    @FXML
+    private TextField txtPasswordVisible;
+    @FXML
+    private Button btnTogglePassword;
+
+    private boolean isPasswordVisible = false;
+
+    @FXML
+    public void initialize() {
+        txtPasswordVisible.textProperty().bindBidirectional(txtPassword.textProperty());
+        txtPasswordVisible.setVisible(false);
+        txtPasswordVisible.setManaged(false);
+    }
+
+    @FXML
+    public void handleTogglePassword() {
+        isPasswordVisible = !isPasswordVisible;
+        txtPasswordVisible.setVisible(isPasswordVisible);
+        txtPasswordVisible.setManaged(isPasswordVisible);
+        txtPassword.setVisible(!isPasswordVisible);
+        txtPassword.setManaged(!isPasswordVisible);
+        btnTogglePassword.setText(isPasswordVisible ? "🙈" : "👁");
+    }
 
     private App app;
 
